@@ -30,7 +30,7 @@ class QixSessionService {
     if (!engine) {
       throw createError(503, 'No suitable QIX Engine available');
     }
-    
+
     const engineAddress = engineToAddress(engine);
 
     try {
