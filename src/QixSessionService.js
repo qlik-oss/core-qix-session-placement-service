@@ -26,6 +26,11 @@ class QixSessionService {
 
     // Select one of them and get the address.
     const engine = engineLoadBalancer.roundRobin(engines);
+
+    if (!engine) {
+      throw createError(503, 'No suitable QIX Engine available');
+    }
+    
     const engineAddress = engineToAddress(engine);
 
     try {
