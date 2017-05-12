@@ -1,18 +1,7 @@
-const containerized = require('containerized');
 const createError = require('http-errors');
 const engineDiscoveryClient = require('./EngineDiscoveryClient');
 const engineSessionPrepper = require('./DocPrepper');
 const engineLoadBalancer = require('./LoadBalancer');
-
-function engineToAddress(engine) {
-  if (containerized()) {
-    return engine.addresses[0];
-  }
-  return {
-    ipAddress: '10.0.75.1',
-    port: '9076'
-  };
-}
 
 class QixSessionService {
   /**
@@ -31,12 +20,10 @@ class QixSessionService {
       throw createError(503, 'No suitable QIX Engine available');
     }
 
-    const engineAddress = engineToAddress(engine);
-
     try {
       // Prepare the session
-      const sessionId = await engineSessionPrepper.prepareDoc(engineAddress.ipAddress, engineAddress.port, docId);
-      return Object.assign({}, engineAddress, { sessionId });
+      const sessionId = await engineSessionPrepper.prepareDoc(engine.ipAddress, engine.port, docId);
+      return Object.assign({}, { ipAddress: engine.ipAddress, port: engine.port }, { sessionId });
     } catch (err) {
       throw createError(404, 'Document not found');
     }
