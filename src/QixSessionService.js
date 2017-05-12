@@ -22,8 +22,9 @@ class QixSessionService {
 
     try {
       // Prepare the session
-      const sessionId = await engineSessionPrepper.prepareDoc(engine.ipAddress, engine.port, docId);
-      return Object.assign({}, { ipAddress: engine.ipAddress, port: engine.port }, { sessionId });
+      const { ipAddress, port } = engine;
+      const sessionId = await engineSessionPrepper.prepareDoc(ipAddress, port, docId);
+      return { ipAddress, port, sessionId };
     } catch (err) {
       throw createError(404, 'Document not found');
     }
