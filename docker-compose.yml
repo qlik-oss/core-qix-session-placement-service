@@ -1,0 +1,18 @@
+version: "3"
+services:
+  qliktive-qix-session-service:
+    image: node:7.8.0-alpine
+    container_name: qliktive-qix-session-service
+    ports:
+      - "9455:9455"
+    working_dir: /srv
+    command: [node, src/index]
+    volumes:
+      - .:/srv
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - core-infra
+
+networks:
+  core-infra:
+    external: true

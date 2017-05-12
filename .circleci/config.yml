@@ -1,0 +1,43 @@
+version: 2
+jobs: 
+  build:
+    docker:
+      - image: node:7
+    working_directory: ~/qliktive-qix-session-service
+    environment:
+      DOCKER_REPO: qlikea/qliktive-qix-session-service
+    steps:
+      - checkout
+      - run:
+          name: Update version tag
+          command: |
+            set -e
+            VER=$(node -e "console.log(require('./package.json').version.replace(/-[0-9]+/, '-$CIRCLE_BUILD_NUM'))")
+            echo "$VER" > ./version.txt
+            if (echo $VER | egrep -- '-[0-9]+$' 1> /dev/null); then
+              npm version $VER --no-git-tag-version
+            fi
+      - run:
+          name: Install dependencies
+          command: 
+            npm install --silent
+      - run:
+          name: Run ESLint
+          command:
+            npm run lint
+      - setup_remote_docker
+      - run:
+          name: Install Docker client
+          command: ./scripts/cci2-install-docker-client.sh 17.04.0-ce
+      - run:
+          name: Build Docker image
+          command: |
+            docker build -t $DOCKER_REPO:$(cat ./version.txt) .
+      - deploy:
+          name: Push image to Docker Hub
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker tag $DOCKER_REPO:$(cat ./version.txt) $DOCKER_REPO:latest
+            fi
+            docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
+            docker push $DOCKER_REPO

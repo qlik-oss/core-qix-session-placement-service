@@ -1,0 +1,80 @@
+swagger: "2.0"
+info:
+  title: "Qliktive QIX session service"
+  description: "REST API for handling QIX Engine sessions in Qliktive"
+  version: "0.0.1"
+host: "localhost:9455"
+schemes:
+  - "http"
+basePath: "/v1"
+produces:
+  - "application/json"
+consumes:
+  - "application/json"
+tags:
+  - name: "session"
+    description: "API for QIX Engine session handling"
+  - name: "health"
+    description: "Health status of the service"
+paths:
+  /session/doc/{docId}:
+   get:
+      tags:
+        - "session"
+      summary: "Get a session for a document with docId"
+      description: "Finds a QIX Engine and opens the document for the user"
+      operationId: "openSession"
+      produces: 
+        - "application/json"
+      parameters: 
+        - name: "docId"
+          in: "path"
+          description: "Guid of the doc to open"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema: 
+            $ref: "#/definitions/session"
+        "404":
+          description: "Document not found"
+  /session/session-doc:
+    get:
+      tags:
+        - "session"
+      summary: "Get a session for a session document"
+      description: "Finds a QIX Engine and creates a session document for the user"
+      operationId: "openSession"
+      produces: 
+          - "application/json"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/session"
+
+  /health:
+    get:
+      tags:
+        - "health"
+      summary: "Get health status of qix-session-service"
+      description: ""
+      responses:
+        "200":
+          description: "The service is alive and healthy"
+definitions:
+  session:
+    description: "Describes the QIX Engine session; what id and where the session is located"
+    type: "object"
+    properties:
+      ipAddress:
+        description: "IP Address of the QIX Engine"
+        type: "string"
+      port:
+        description: "Port number exposed by the QIX Engine"
+        type: "number"
+      sessionId:
+        description: "Guid identifying the QIX Engine session"
+        type: "string"
+
