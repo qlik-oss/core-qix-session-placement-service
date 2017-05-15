@@ -4,7 +4,7 @@ const WebSocket = require('ws');
 const enigma = require('enigma.js');
 const qixSchema = require('../node_modules/enigma.js/schemas/qix/3.1/schema.json');
 const uuid = require('uuid/v4');
-const logger = require('winston');
+const logger = require('./Logger').get();
 
 function createConfiguration(host, port, sessionId) {
   const config = {
@@ -44,7 +44,7 @@ class DocPrepper {
       }, 1000);
       return sessionId;
     } catch (err) {
-      console.log(err);
+      logger.error(err);
       throw err;
     }
   }

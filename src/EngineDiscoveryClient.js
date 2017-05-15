@@ -1,5 +1,6 @@
 const http = require('http');
 const containerized = require('containerized');
+const logger = require('./Logger').get();
 
 class EngineDiscoveryClient {
   static queryEngines(props) {
@@ -14,6 +15,7 @@ class EngineDiscoveryClient {
           body += d;
         });
         response.on('error', (d) => {
+          logger.error(d);
           resolve(d);
         });
         response.on('end', () => {
