@@ -53,7 +53,6 @@ paths:
           description: "OK"
           schema:
             $ref: "#/definitions/session"
-
   /health:
     get:
       tags:
@@ -67,6 +66,10 @@ definitions:
   session:
     description: "Describes the QIX Engine session; what id and where the session is located"
     type: "object"
+    required:
+      - ipAddress
+      - port
+      - sessionId
     properties:
       ipAddress:
         description: "IP Address of the QIX Engine"
@@ -77,4 +80,6 @@ definitions:
       sessionId:
         description: "Guid identifying the QIX Engine session"
         type: "string"
-
+      docId:
+        description: "Guid of the doc"
+        type: "string"

@@ -1,17 +1,18 @@
 const process = require('process');
 const Koa = require('koa');
 const Router = require('koa-router');
-const logger = require('winston');
 const koaLoggerWinston = require('koa-logger-winston');
-const Config = require('./Config');
-const qixSessionService = require('./QixSessionService');
 const swagger = require('swagger2');
 const swagger2koa = require('swagger2-koa');
 const path = require('path');
+const Config = require('./Config');
+const qixSessionService = require('./QixSessionService');
+const logger = require('./Logger').get();
 
 const apiVersion = 'v1';
 const healthEndpoint = 'health';
 const sessionEndpoint = 'session';
+
 const app = new Koa();
 const router = new Router({ prefix: `/${apiVersion}` });
 const config = new Config();
