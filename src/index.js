@@ -40,12 +40,19 @@ app.listen(config.port);
 
 process.on('SIGTERM', () => {
   app.close(() => {
+    logger.info('Process exiting on SIGTERM');
     process.exit(0);
   });
 });
 
-process.on('unhandledRejection', (reason) => {
-  logger.error(reason);
+process.on('unhandledRejection', (err) => {
+  logger.error('Process encountered an unhandled rejection', err);
+  process.exit(1);
+});
+
+process.on('uncaughtException', (err) => {
+  logger.error('Process encountered an uncaught exception', err);
+  process.exit(1);
 });
 
 logger.info(`Listening on port ${config.port}`);
