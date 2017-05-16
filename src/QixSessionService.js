@@ -27,7 +27,7 @@ class QixSessionService {
     try {
       // Prepare the session
       const sessionId = await engineSessionPrepper.prepareDoc(ipAddress, port, docId);
-      const sessionInfo = { ipAddress, port, sessionId };
+      const sessionInfo = { ipAddress, port, docId, sessionId };
       logger.info('Session opened', sessionInfo);
       return sessionInfo;
     } catch (err) {
