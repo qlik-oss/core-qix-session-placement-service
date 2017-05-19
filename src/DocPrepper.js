@@ -14,6 +14,7 @@ function createConfiguration(host, port, sessionId) {
       unsecure: true,
       route: 'app/engineData',
       host,
+      identity: sessionId,
       port
     },
     createSocket(url) {
