@@ -1,18 +1,11 @@
-version: "3"
+version: "3.1"
+
 services:
-  qliktive-qix-session-service:
-    image: node:7.8.0-alpine
-    container_name: qliktive-qix-session-service
-    ports:
-      - "9455:9455"
-    working_dir: /srv
-    command: [node, src/index]
-    volumes:
-      - .:/srv
-      - /var/run/docker.sock:/var/run/docker.sock
+  qix-session:
+    build: .
     networks:
-      - core-infra
+      - qliktivecustomanalytics_default
 
 networks:
-  core-infra:
+  qliktivecustomanalytics_default:
     external: true
