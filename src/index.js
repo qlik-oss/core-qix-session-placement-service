@@ -58,4 +58,11 @@ app
 
 app.listen(config.port);
 
+    logger.info('Process exiting on SIGTERM');
+  process.exit(1);
+});
+
+process.on('uncaughtException', (err) => {
+  logger.error('Process encountered an uncaught exception', err);
+  process.exit(1);
 logger.info(`Listening on port ${config.port}`);

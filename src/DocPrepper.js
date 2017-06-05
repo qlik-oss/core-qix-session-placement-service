@@ -6,13 +6,18 @@ const qixSchema = require('../node_modules/enigma.js/schemas/qix/3.1/schema.json
 const uuid = require('uuid/v4');
 const logger = require('./Logger').get();
 
+// number of seconds QIX Engine should keep the session alive after disconnecting
+// the last socket to a session:
+const DEFAULT_TTL = 5;
+
 function createConfiguration(host, port, sessionId) {
   const config = {
     schema: qixSchema,
     session: {
+      disableCache: true,
       secure: false,
-      unsecure: true,
       route: 'app/engineData',
+      ttl: DEFAULT_TTL,
       host,
       port
     },
@@ -23,7 +28,7 @@ function createConfiguration(host, port, sessionId) {
         }
       });
     },
-    handleLog: logRow => logger.info(logRow)
+    handleLog: logRow => logger.info(JSON.stringify(logRow))
   };
   return config;
 }
@@ -35,13 +40,12 @@ class DocPrepper {
     try {
       const qix = await enigma.getService('qix', config);
       const doc = docId ? await qix.global.openDoc(docId) : await qix.global.createSessionApp();
-      setTimeout(() => {
-        if (docId) {
-          doc.session.close();
-        } else {
-          qix.global.session.close();
-        }
-      }, 1000);
+      if (docId) {
+        // openDoc creates a new socket for the document that we need to close
+        // explicitly:
+        doc.session.close();
+      }
+      qix.global.session.close();
       return sessionId;
     } catch (err) {
       logger.error(err);
