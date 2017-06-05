@@ -8,7 +8,7 @@ class EngineDiscoveryClient {
       http.get({
         host: containerized() ? 'mira' : 'localhost',
         port: 9100,
-        path: `/v1/query?properties=${JSON.stringify(props)}`
+        path: `/v1/engines?properties=${JSON.stringify(props)}`
       }, (response) => {
         let body = '';
         response.on('data', (d) => {
