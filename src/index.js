@@ -18,6 +18,25 @@ const router = new Router({ prefix: `/${apiVersion}` });
 const config = new Config();
 const document = swagger.loadDocumentSync(path.join(__dirname, './../doc/api-doc.yml'));
 
+function onUnhandledError(err) {
+  logger.error('Process encountered an unhandled error', err);
+  process.exit(1);
+}
+
+/*
+ * Service bootstrapping
+ */
+
+process.on('SIGTERM', () => {
+  app.close(() => {
+    logger.info('Process exiting on SIGTERM');
+    process.exit(0);
+  });
+});
+
+process.on('uncaughtException', onUnhandledError);
+process.on('unhandledRejection', onUnhandledError);
+
 router.get(`/${healthEndpoint}`, async (ctx) => { ctx.body = 'OK'; });
 
 router.get(`/${sessionEndpoint}/doc/:docId`, async (ctx) => {
@@ -38,22 +57,5 @@ app
   .use(router.allowedMethods());
 
 app.listen(config.port);
-
-process.on('SIGTERM', () => {
-  app.close(() => {
-    logger.info('Process exiting on SIGTERM');
-    process.exit(0);
-  });
-});
-
-process.on('unhandledRejection', (err) => {
-  logger.error('Process encountered an unhandled rejection', err);
-  process.exit(1);
-});
-
-process.on('uncaughtException', (err) => {
-  logger.error('Process encountered an uncaught exception', err);
-  process.exit(1);
-});
 
 logger.info(`Listening on port ${config.port}`);
