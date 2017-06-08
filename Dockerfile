@@ -6,4 +6,4 @@ COPY node_modules/ ./node_modules
 COPY src/ ./src
 COPY doc/ ./doc
 EXPOSE "9455"
-CMD ["npm", "start", "--silent"]
+ENTRYPOINT ["node", "./src/index.js"]

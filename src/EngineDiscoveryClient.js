@@ -1,14 +1,15 @@
 const http = require('http');
-const containerized = require('containerized');
 const logger = require('./Logger').get();
+
+const Config = require('./Config');
 
 class EngineDiscoveryClient {
   static queryEngines(props) {
     return new Promise((resolve /* , reject*/) => {
       http.get({
-        host: containerized() ? 'mira' : 'localhost',
-        port: 9100,
-        path: `/v1/query?properties=${JSON.stringify(props)}`
+        host: Config.miraHostName,
+        port: Config.miraPort,
+        path: `/v1/engines?properties=${JSON.stringify(props)}`
       }, (response) => {
         let body = '';
         response.on('data', (d) => {
@@ -19,8 +20,13 @@ class EngineDiscoveryClient {
           resolve(d);
         });
         response.on('end', () => {
-          const parsed = JSON.parse(body);
-          resolve(parsed);
+          try {
+            const parsed = JSON.parse(body);
+            resolve(parsed);
+          } catch (parseErr) {
+            logger.error(parseErr);
+            resolve(parseErr);
+          }
         });
       });
     });
