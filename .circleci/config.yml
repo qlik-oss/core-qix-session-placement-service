@@ -27,7 +27,7 @@ jobs:
           command:
             npm prune --production
       - setup_remote_docker
-       - run:
+      - run:
           name: Update version tag
           command: |
             set -e
