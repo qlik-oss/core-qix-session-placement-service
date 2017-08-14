@@ -2,13 +2,17 @@ let roundRobinCounter = 0;
 
 class LoadBalancer {
   static roundRobin(engines) {
-    if (engines.length === 0) {
+    const healthyEngines = engines.filter(engine => engine.properties.healthy);
+
+    if (healthyEngines.length === 0) {
       return undefined;
     }
-    if (roundRobinCounter >= engines.length) {
+
+    if (roundRobinCounter >= healthyEngines.length) {
       roundRobinCounter = 0;
     }
-    const engine = engines[roundRobinCounter];
+
+    const engine = healthyEngines[roundRobinCounter];
     roundRobinCounter += 1;
     return engine;
   }
