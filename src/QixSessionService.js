@@ -4,6 +4,8 @@ const engineSessionPrepper = require('./DocPrepper');
 const engineLoadBalancer = require('./LoadBalancer');
 const logger = require('./Logger').get();
 
+const healthyQuery = { healthy: true };
+
 class QixSessionService {
   /**
    * Picks an engine
@@ -12,7 +14,7 @@ class QixSessionService {
    */
   static async openSession(docId) {
     // Get list of possible engines
-    const engines = await engineDiscoveryClient.queryEngines('');
+    const engines = await engineDiscoveryClient.queryEngines(healthyQuery);
 
     // Select one of them and get the address.
     const engine = engineLoadBalancer.roundRobin(engines);
