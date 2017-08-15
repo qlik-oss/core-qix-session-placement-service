@@ -5,9 +5,11 @@ class LoadBalancer {
     if (engines.length === 0) {
       return undefined;
     }
+
     if (roundRobinCounter >= engines.length) {
       roundRobinCounter = 0;
     }
+
     const engine = engines[roundRobinCounter];
     roundRobinCounter += 1;
     return engine;
