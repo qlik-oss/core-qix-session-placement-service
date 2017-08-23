@@ -10,7 +10,7 @@ const logger = require('./Logger').get();
 // the last socket to a session:
 const DEFAULT_TTL = 5;
 
-function createConfiguration(host, port, sessionId) {
+function createConfiguration(host, port, sessionId, jwt) {
   const config = {
     schema: qixSchema,
     session: {
@@ -24,7 +24,8 @@ function createConfiguration(host, port, sessionId) {
     createSocket(url) {
       return new WebSocket(url, {
         headers: {
-          'X-Qlik-Session': sessionId
+          'X-Qlik-Session': sessionId,
+          Authorization: jwt
         }
       });
     },
@@ -34,9 +35,9 @@ function createConfiguration(host, port, sessionId) {
 }
 
 class DocPrepper {
-  static async prepareDoc(host, port, docId) {
+  static async prepareDoc(host, port, docId, jwt) {
     const sessionId = uuid();
-    const config = createConfiguration(host, port, sessionId);
+    const config = createConfiguration(host, port, sessionId, jwt);
     try {
       const qix = await enigma.getService('qix', config);
       const doc = docId ? await qix.global.openDoc(docId) : await qix.global.createSessionApp();
