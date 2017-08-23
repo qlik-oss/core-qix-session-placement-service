@@ -12,13 +12,11 @@ class QixSessionService {
    * @param docId
    * @returns {Promise<TResult>}
    */
-  static async openSession(docId) {
+  static async openSession(docId, jwt) {
     // Get list of possible engines
     const engines = await engineDiscoveryClient.queryEngines(healthyQuery);
-
     // Select one of them and get the address.
     const engine = engineLoadBalancer.roundRobin(engines);
-
     if (!engine) {
       logger.error('Engine load balancer did not return an engine');
       throw createError(503, 'No suitable QIX Engine available');
@@ -28,7 +26,7 @@ class QixSessionService {
 
     try {
       // Prepare the session
-      const sessionId = await engineSessionPrepper.prepareDoc(ipAddress, port, docId);
+      const sessionId = await engineSessionPrepper.prepareDoc(ipAddress, port, docId, jwt);
       const sessionInfo = { ipAddress, port, sessionId };
       if (docId.length !== 0) { sessionInfo.docId = docId; }
       logger.info('Session opened', sessionInfo);
