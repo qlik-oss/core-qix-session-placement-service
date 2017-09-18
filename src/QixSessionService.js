@@ -22,18 +22,17 @@ class QixSessionService {
       throw createError(503, 'No suitable QIX Engine available');
     }
 
-    const ipAddress = instance.engine.ip;
-    const port = instance.engine.port;
+    const { ip, port } = instance.engine;
 
     try {
       // Prepare the session
-      const sessionId = await engineSessionPrepper.prepareDoc(ipAddress, port, docId, jwt);
-      const sessionInfo = { ipAddress, port, sessionId };
+      const sessionId = await engineSessionPrepper.prepareDoc(ip, port, docId, jwt);
+      const sessionInfo = { ip, port, sessionId };
       if (docId.length !== 0) { sessionInfo.docId = docId; }
       logger.info('Session opened', sessionInfo);
       return sessionInfo;
     } catch (err) {
-      logger.error('Failed to open session', { ipAddress, port, docId });
+      logger.error('Failed to open session', { ip, port, docId });
       throw createError(404, 'Document not found');
     }
   }
