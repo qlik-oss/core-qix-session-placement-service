@@ -4,8 +4,6 @@ const engineSessionPrepper = require('./DocPrepper');
 const engineLoadBalancer = require('./LoadBalancer');
 const logger = require('./Logger').get();
 
-const healthyQuery = { healthy: true };
-
 class QixSessionService {
   /**
    * Picks an engine
@@ -13,16 +11,19 @@ class QixSessionService {
    * @returns {Promise<TResult>}
    */
   static async openSession(docId, jwt) {
-    // Get list of possible engines
-    const engines = await engineDiscoveryClient.queryEngines(healthyQuery);
+    // Get list of engines
+    let engines = await engineDiscoveryClient.listEngines();
+    // Only load balance on healthy engines
+    engines = engines.filter(instance => instance.engine.status === 'OK');
     // Select one of them and get the address.
-    const engine = engineLoadBalancer.roundRobin(engines);
-    if (!engine) {
-      logger.error('Engine load balancer did not return an engine');
+    const instance = engineLoadBalancer.roundRobin(engines);
+    if (!instance) {
+      logger.error('Engine load balancer did not return an engine instance');
       throw createError(503, 'No suitable QIX Engine available');
     }
 
-    const { ipAddress, port } = engine;
+    const ipAddress = instance.engine.ip;
+    const port = instance.engine.port;
 
     try {
       // Prepare the session
