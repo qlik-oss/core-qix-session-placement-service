@@ -29,7 +29,7 @@ function createConfiguration(host, port, sessionId, jwt) {
           Authorization: jwt
         }
       });
-    },
+    }
     // handleLog: logRow => logger.info(JSON.stringify(logRow))
   };
   return config;
@@ -45,10 +45,15 @@ class DocPrepper {
 
       const qix = await session.open();
 
-      docId ? await qix.openDoc(docId) : await qix.createSessionApp();
+      if(docId){
+        await qix.openDoc(docId);
+      }
+      else{
+        await qix.createSessionApp()
+      }
 
 
-      logger.info(`session closed`);
+      logger.info('session closed');
 
       await qix.session.close();
 
