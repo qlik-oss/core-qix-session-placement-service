@@ -2,7 +2,7 @@
 
 const WebSocket = require('ws');
 const enigma = require('enigma.js');
-const qixSchema = require('../node_modules/enigma.js/schemas/qix/3.1/schema.json');
+const schema = require('../node_modules/enigma.js/schemas/12.20.0.json');
 const uuid = require('uuid/v4');
 const logger = require('./Logger').get();
 
@@ -12,15 +12,16 @@ const DEFAULT_TTL = 5;
 
 function createConfiguration(host, port, sessionId, jwt) {
   const config = {
-    schema: qixSchema,
-    session: {
-      disableCache: true,
-      secure: false,
-      route: 'app/engineData',
-      ttl: DEFAULT_TTL,
-      host,
-      port
-    },
+    schema,
+    url: `ws://${host}:${port}/app/engineData/ttl/${DEFAULT_TTL}`,
+    // session: {
+    //   disableCache: true,
+    //   secure: false,
+    //   route: 'app/engineData',
+    //   ttl: DEFAULT_TTL,
+    //   host,
+    //   port
+    // },
     createSocket(url) {
       return new WebSocket(url, {
         headers: {
@@ -29,7 +30,7 @@ function createConfiguration(host, port, sessionId, jwt) {
         }
       });
     },
-    handleLog: logRow => logger.info(JSON.stringify(logRow))
+    // handleLog: logRow => logger.info(JSON.stringify(logRow))
   };
   return config;
 }
@@ -39,14 +40,18 @@ class DocPrepper {
     const sessionId = uuid();
     const config = createConfiguration(host, port, sessionId, jwt);
     try {
-      const qix = await enigma.getService('qix', config);
-      const doc = docId ? await qix.global.openDoc(docId) : await qix.global.createSessionApp();
-      if (docId) {
-        // openDoc creates a new socket for the document that we need to close
-        // explicitly:
-        doc.session.close();
-      }
-      qix.global.session.close();
+      const session = enigma.create(config);
+      session.on('traffic:*', logRow => logger.info(JSON.stringify(logRow)));
+
+      const qix = await session.open();
+
+      docId ? await qix.openDoc(docId) : await qix.createSessionApp();
+
+
+      logger.info(`session closed`);
+
+      await qix.session.close();
+
       return sessionId;
     } catch (err) {
       logger.error(err);
