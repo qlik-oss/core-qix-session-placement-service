@@ -14,14 +14,6 @@ function createConfiguration(host, port, sessionId, jwt) {
   const config = {
     schema,
     url: `ws://${host}:${port}/app/engineData/ttl/${DEFAULT_TTL}`,
-    // session: {
-    //   disableCache: true,
-    //   secure: false,
-    //   route: 'app/engineData',
-    //   ttl: DEFAULT_TTL,
-    //   host,
-    //   port
-    // },
     createSocket(url) {
       return new WebSocket(url, {
         headers: {
@@ -30,7 +22,6 @@ function createConfiguration(host, port, sessionId, jwt) {
         }
       });
     }
-    // handleLog: logRow => logger.info(JSON.stringify(logRow))
   };
   return config;
 }
@@ -50,9 +41,6 @@ class DocPrepper {
       } else {
         await qix.createSessionApp();
       }
-
-
-      logger.info('session closed');
 
       await qix.session.close();
 
