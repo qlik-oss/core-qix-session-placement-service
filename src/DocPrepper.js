@@ -2,7 +2,7 @@
 
 const WebSocket = require('ws');
 const enigma = require('enigma.js');
-const schema = require('../node_modules/enigma.js/schemas/12.20.0.json');
+const schema = require('enigma.js/schemas/12.20.0.json');
 const uuid = require('uuid/v4');
 const logger = require('./Logger').get();
 
