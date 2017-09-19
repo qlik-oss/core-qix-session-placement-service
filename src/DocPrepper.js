@@ -45,11 +45,10 @@ class DocPrepper {
 
       const qix = await session.open();
 
-      if(docId){
+      if (docId) {
         await qix.openDoc(docId);
-      }
-      else{
-        await qix.createSessionApp()
+      } else {
+        await qix.createSessionApp();
       }
 
 
