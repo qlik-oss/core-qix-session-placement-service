@@ -32,7 +32,7 @@ class DocPrepper {
     const config = createConfiguration(host, port, sessionId, jwt);
     try {
       const session = enigma.create(config);
-      session.on('traffic:*', logRow => logger.info(JSON.stringify(logRow)));
+      session.on('traffic:*', (direction, msg) => logger.info(`${direction}: ${msg}`));
 
       const qix = await session.open();
 
