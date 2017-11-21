@@ -17,6 +17,7 @@ const app = new Koa();
 const router = new Router({ prefix: `/${apiVersion}` });
 const config = new Config();
 const document = swagger.loadDocumentSync(path.join(__dirname, './../doc/api-doc.yml'));
+let server;
 
 function onUnhandledError(err) {
   logger.error('Process encountered an unhandled error', err);
@@ -28,7 +29,7 @@ function onUnhandledError(err) {
  */
 
 process.on('SIGTERM', () => {
-  app.close(() => {
+  server.close(() => {
     logger.info('Process exiting on SIGTERM');
     process.exit(0);
   });
@@ -64,6 +65,5 @@ app
   .use(router.routes())
   .use(router.allowedMethods());
 
-app.listen(config.port);
-
+server = app.listen(config.port);
 logger.info(`Listening on port ${config.port}`);
