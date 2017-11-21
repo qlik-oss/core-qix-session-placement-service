@@ -41,13 +41,23 @@ router.get(`/${healthEndpoint}`, async (ctx) => { ctx.body = 'OK'; });
 
 router.get(`/${sessionEndpoint}/doc/:docId`, async (ctx) => {
   const fullDocId = `/doc/${ctx.params.docId}`;
-  const sessionInfo = await qixSessionService.openSession(fullDocId, ctx.headers.authorization);
-  ctx.body = JSON.stringify(sessionInfo, undefined, '   ');
+  try {
+    const sessionInfo = await qixSessionService.openSession(fullDocId, ctx.headers.authorization);
+    ctx.body = JSON.stringify(sessionInfo, undefined, '   ');
+  } catch (err) {
+    ctx.status = err.status || 500;
+    ctx.body(err.message);
+  }
 });
 
 router.get(`/${sessionEndpoint}/session-doc`, async (ctx) => {
-  const sessionInfo = await qixSessionService.openSession('', ctx.headers.authorization);
-  ctx.body = JSON.stringify(sessionInfo, undefined, '   ');
+  try {
+    const sessionInfo = await qixSessionService.openSession('', ctx.headers.authorization);
+    ctx.body = JSON.stringify(sessionInfo, undefined, '   ');
+  } catch (err) {
+    ctx.status = err.status || 500;
+    ctx.body(err.message);
+  }
 });
 
 app
