@@ -14,10 +14,10 @@ const healthEndpoint = 'health';
 const sessionEndpoint = 'session';
 
 const app = new Koa();
-let server;
 const router = new Router({ prefix: `/${apiVersion}` });
 const config = new Config();
 const document = swagger.loadDocumentSync(path.join(__dirname, './../doc/api-doc.yml'));
+let server;
 
 function onUnhandledError(err) {
   logger.error('Process encountered an unhandled error', err);
