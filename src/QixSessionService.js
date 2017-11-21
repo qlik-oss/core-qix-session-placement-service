@@ -12,7 +12,13 @@ class QixSessionService {
    */
   static async openSession(docId, jwt) {
     // Get list of engines
-    let engines = await engineDiscoveryClient.listEngines();
+    let engines;
+    try {
+      engines = await engineDiscoveryClient.listEngines();
+    } catch (err) {
+      logger.error('Engine Discovery client did not return an engine instance');
+      throw createError(503, 'No suitable QIX Engine available');
+    }
     // Only load balance on healthy engines
     engines = engines.filter(instance => instance.engine.status === 'OK');
     // Select one of them and get the address.
