@@ -14,6 +14,7 @@ const healthEndpoint = 'health';
 const sessionEndpoint = 'session';
 
 const app = new Koa();
+let server;
 const router = new Router({ prefix: `/${apiVersion}` });
 const config = new Config();
 const document = swagger.loadDocumentSync(path.join(__dirname, './../doc/api-doc.yml'));
@@ -28,7 +29,7 @@ function onUnhandledError(err) {
  */
 
 process.on('SIGTERM', () => {
-  app.close(() => {
+  server.close(() => {
     logger.info('Process exiting on SIGTERM');
     process.exit(0);
   });
@@ -64,6 +65,5 @@ app
   .use(router.routes())
   .use(router.allowedMethods());
 
-app.listen(config.port);
-
+server = app.listen(config.port);
 logger.info(`Listening on port ${config.port}`);
