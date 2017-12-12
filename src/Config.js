@@ -1,5 +1,3 @@
-const process = require('process');
-
 class Config {
   constructor() {
     Config.miraHostName = process.env.MIRA_HOST_NAME ||

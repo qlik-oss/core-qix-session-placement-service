@@ -1,5 +1,3 @@
-/* eslint import/no-unresolved:0, import/extensions:0, no-console:0 */
-
 const WebSocket = require('ws');
 const enigma = require('enigma.js');
 const schema = require('enigma.js/schemas/12.20.0.json');
@@ -18,10 +16,10 @@ function createConfiguration(host, port, sessionId, jwt) {
       return new WebSocket(url, {
         headers: {
           'X-Qlik-Session': sessionId,
-          Authorization: jwt
-        }
+          Authorization: jwt,
+        },
       });
-    }
+    },
   };
   return config;
 }
@@ -33,7 +31,7 @@ class DocPrepper {
     try {
       const session = enigma.create(config);
 
-      session.on('traffic:*', (direction, msg) => logger.info(`${direction}: ${JSON.stringify(msg)}`));
+      session.on('traffic:*', (direction, msg) => logger.debug(`${direction}: ${JSON.stringify(msg)}`));
 
       const qix = await session.open();
 
@@ -47,8 +45,8 @@ class DocPrepper {
 
       return sessionId;
     } catch (err) {
-      logger.error(err);
-      throw err;
+      logger.error(`Failed to open doc with error: ${err}`);
+      throw new Error(500, 'Failed to open doc');
     }
   }
 }

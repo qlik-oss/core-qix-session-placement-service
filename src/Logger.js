@@ -13,13 +13,15 @@ class Logger {
       Logger.logger = new (winston.Logger)({
         transports: [
           new (winston.transports.Console)({
-            timestamp: true,
-            json: true,
-            stringify: true,
-            level: process.env.LOG_LEVEL || 'silly',
-            humanReadableUnhandledException: true
-          })
-        ]
+            level: 'info',
+            humanReadableUnhandledException: true,
+            formatter: options => JSON.stringify({
+              logseverity: options.level.toUpperCase(),
+              message: options.message,
+              timestamp: new Date(Date.now()).toISOString(),
+            }),
+          }),
+        ],
       });
     }
     return Logger.logger;
