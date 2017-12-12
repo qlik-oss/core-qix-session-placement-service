@@ -37,16 +37,12 @@ jobs:
           command: |
             docker build -t $DOCKER_REPO:$(cat ./version.txt) .
       - run:
-          name: Start container
-          background: true
-          command: docker run -p 9455:9455 $DOCKER_REPO:$(cat ./version.txt)
-      - run:
           name: Check that service reaches status healthy
           command: |
             set +e
 
             # Check that qix-session-service is healthy
-            CONTAINER_ID=$(docker ps -aqf "name=qix-session-service")
+            CONTAINER_ID=$(docker run -d -p 9455:9455 $DOCKER_REPO:$(cat ./version.txt))
             echo "Container id is $CONTAINER_ID"
 
             RETRIES=0
