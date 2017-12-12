@@ -31,7 +31,7 @@ class DocPrepper {
     try {
       const session = enigma.create(config);
 
-      session.on('traffic:*', (direction, msg) => logger.info(`${direction}: ${JSON.stringify(msg)}`));
+      session.on('traffic:*', (direction, msg) => logger.debug(`${direction}: ${JSON.stringify(msg)}`));
 
       const qix = await session.open();
 
@@ -45,8 +45,8 @@ class DocPrepper {
 
       return sessionId;
     } catch (err) {
-      logger.error(err);
-      throw err;
+      logger.error(`Failed to prepare doc with error: ${err}`);
+      throw new Error(500, err);
     }
   }
 }
