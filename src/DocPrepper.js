@@ -19,17 +19,17 @@ function createConfiguration(host, port, sessionId, jwt) {
       route: 'app/engineData',
       ttl: DEFAULT_TTL,
       host,
-      port
+      port,
     },
     createSocket(url) {
       return new WebSocket(url, {
         headers: {
           'X-Qlik-Session': sessionId,
-          Authorization: jwt
-        }
+          Authorization: jwt,
+        },
       });
     },
-    handleLog: logRow => logger.info(JSON.stringify(logRow))
+    handleLog: logRow => logger.info(JSON.stringify(logRow)),
   };
   return config;
 }

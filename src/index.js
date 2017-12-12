@@ -23,10 +23,6 @@ function onUnhandledError(err) {
   process.exit(1);
 }
 
-/*
- * Service bootstrapping
- */
-
 process.on('SIGTERM', () => {
   app.close(() => {
     logger.info('Process exiting on SIGTERM');

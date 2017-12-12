@@ -2,14 +2,14 @@ version: 2
 jobs:
   build:
     docker:
-      - image: node:7
+      - image: circleci/node:8
     working_directory: ~/qliktive-qix-session-service
     environment:
       DOCKER_REPO: qlikea/qliktive-qix-session-service
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: npm-dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Install dependencies
           command:
@@ -19,13 +19,9 @@ jobs:
           command:
             npm run lint
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: npm-dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
-      - run:
-          name: Prune dependencies
-          command:
-            npm prune --production
       - setup_remote_docker
       - run:
           name: Update version tag
@@ -36,9 +32,6 @@ jobs:
             if (echo $VER | egrep -- '-[0-9]+$' 1> /dev/null); then
               npm version $VER --no-git-tag-version
             fi
-      - run:
-          name: Install Docker client
-          command: ./scripts/cci2-install-docker-client.sh 17.04.0-ce
       - run:
           name: Build Docker image
           command: |

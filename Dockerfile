@@ -1,9 +1,16 @@
-FROM node:7-alpine
+FROM node:8-alpine
+
+RUN apk --update add curl
 RUN mkdir -p /app/
+
+HEALTHCHECK CMD curl -fs http://localhost:9455/v1/health || exit 1
+
 WORKDIR /app/
+
 COPY package.json ./
-COPY node_modules/ ./node_modules
-COPY src/ ./src
+RUN npm install --quiet --production
+
 COPY doc/ ./doc
-EXPOSE "9455"
+COPY src/ ./src
+
 ENTRYPOINT ["node", "./src/index.js"]

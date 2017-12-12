@@ -9,7 +9,7 @@ class EngineDiscoveryClient {
       http.get({
         host: Config.miraHostName,
         port: Config.miraPort,
-        path: '/v1/engines'
+        path: '/v1/engines',
       }, (response) => {
         let body = '';
         response.on('data', (d) => {
