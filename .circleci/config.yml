@@ -33,6 +33,9 @@ jobs:
               npm version $VER --no-git-tag-version
             fi
       - run:
+          name: Login to Docker
+          command: docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
+      - run:
           name: Spin up environment
           command: docker-compose up -d
       - run:
@@ -70,5 +73,4 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker tag $DOCKER_REPO:$(cat ./version.txt) $DOCKER_REPO:latest
             fi
-            docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
             docker push $DOCKER_REPO
