@@ -33,13 +33,14 @@ jobs:
               npm version $VER --no-git-tag-version
             fi
       - run:
-          name: Login to Docker
-          command: docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
+          name: Build Docker image
+          command: |
+            docker build -t $DOCKER_REPO:$(cat ./version.txt) .
       - run:
           name: Spin up environment
-          command: docker-compose up -d
+          command: docker run -p 9455:9455 $DOCKER_REPO:$(cat ./version.txt)
       - run:
-          name: Check that services are up and running
+          name: Check that service reaches status healthy
           command: |
             set +e
 
@@ -59,18 +60,11 @@ jobs:
               echo "Service did not start up properly"
               exit 1
             fi
-      - run:
-          name: Verify that a session can be opened
-          command: |
-            curl -f localhost:9455/v1/session/session-doc --header "Authorization: Bearer 123"
-      - run:
-          name: Build Docker image
-          command: |
-            docker build -t $DOCKER_REPO:$(cat ./version.txt) .
       - deploy:
           name: Push image to Docker Hub
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker tag $DOCKER_REPO:$(cat ./version.txt) $DOCKER_REPO:latest
             fi
+            docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
             docker push $DOCKER_REPO
