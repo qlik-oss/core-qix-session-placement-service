@@ -3,6 +3,7 @@ const enigma = require('enigma.js');
 const schema = require('enigma.js/schemas/12.20.0.json');
 const uuid = require('uuid/v4');
 const logger = require('./Logger').get();
+const createError = require('http-errors');
 
 // number of seconds QIX Engine should keep the session alive after disconnecting
 // the last socket to a session:
@@ -46,7 +47,7 @@ class DocPrepper {
       return sessionId;
     } catch (err) {
       logger.error(`Failed to open doc with error: ${err}`);
-      throw new Error(500, 'Failed to open doc');
+      throw createError(`Failed to open doc with error: ${err}`);
     }
   }
 }

@@ -33,6 +33,34 @@ jobs:
               npm version $VER --no-git-tag-version
             fi
       - run:
+          name: Spin up environment
+          command: docker-compose up -d
+      - run:
+          name: Check that services are up and running
+          command: |
+            set +e
+
+            # Check that qix-session-service is healthy
+            CONTAINER_ID=$(docker ps -aqf "name=qix-session-service")
+            echo "Container id is $CONTAINER_ID"
+
+            RETRIES=0
+             while [[ "$STATUS" != "healthy" && $RETRIES -le 30 ]]; do
+              STATUS=$(docker inspect -f '{{.State.Health.Status}}' "$CONTAINER_ID")
+              echo "Container status is $STATUS"
+              sleep 2
+              RETRIES=$[$RETRIES+1]
+            done
+
+            if [[ "$STATUS" != "healthy" ]]; then
+              echo "Service did not start up properly"
+              exit 1
+            fi
+      - run:
+          name: Verify that a session can be opened
+          command: |
+            curl -f localhost:9455/v1/session/session-doc --header "Authorization: Bearer 123"
+      - run:
           name: Build Docker image
           command: |
             docker build -t $DOCKER_REPO:$(cat ./version.txt) .
