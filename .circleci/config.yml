@@ -37,7 +37,8 @@ jobs:
           command: |
             docker build -t $DOCKER_REPO:$(cat ./version.txt) .
       - run:
-          name: Spin up environment
+          name: Start container
+          background: true
           command: docker run -p 9455:9455 $DOCKER_REPO:$(cat ./version.txt)
       - run:
           name: Check that service reaches status healthy
