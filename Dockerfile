@@ -13,4 +13,5 @@ RUN npm install --quiet --production
 COPY doc/ ./doc
 COPY src/ ./src
 
+ENV SESSION_SERVICE_CONTAINERIZED true
 ENTRYPOINT ["node", "./src/index.js"]

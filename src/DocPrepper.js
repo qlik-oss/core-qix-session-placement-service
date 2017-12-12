@@ -1,6 +1,6 @@
 const WebSocket = require('ws');
 const enigma = require('enigma.js');
-const qixSchema = require('../node_modules/enigma.js/schemas/3.1.json');
+const schema = require('enigma.js/schemas/12.20.0.json');
 const uuid = require('uuid/v4');
 const logger = require('./Logger').get();
 
@@ -10,14 +10,8 @@ const DEFAULT_TTL = 5;
 
 function createConfiguration(host, port, sessionId, jwt) {
   const config = {
-    schema: qixSchema,
-    session: {
-      disableCache: true,
-      secure: false,
-      route: `app/engineData/ttl/${DEFAULT_TTL}`,
-      host,
-      port,
-    },
+    schema,
+    url: `ws://${host}:${port}/app/engineData/ttl/${DEFAULT_TTL}`,
     createSocket(url) {
       return new WebSocket(url, {
         headers: {
@@ -26,7 +20,6 @@ function createConfiguration(host, port, sessionId, jwt) {
         },
       });
     },
-    handleLog: logRow => logger.info(JSON.stringify(logRow)),
   };
   return config;
 }
@@ -36,14 +29,20 @@ class DocPrepper {
     const sessionId = uuid();
     const config = createConfiguration(host, port, sessionId, jwt);
     try {
-      const qix = await enigma.getService('qix', config);
-      const doc = docId ? await qix.global.openDoc(docId) : await qix.global.createSessionApp();
+      const session = enigma.create(config);
+
+      session.on('traffic:*', (direction, msg) => logger.info(`${direction}: ${JSON.stringify(msg)}`));
+
+      const qix = await session.open();
+
       if (docId) {
-        // openDoc creates a new socket for the document that we need to close
-        // explicitly:
-        doc.session.close();
+        await qix.openDoc(docId);
+      } else {
+        await qix.createSessionApp();
       }
-      qix.global.session.close();
+
+      await qix.session.close();
+
       return sessionId;
     } catch (err) {
       logger.error(err);

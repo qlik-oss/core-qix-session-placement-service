@@ -40,17 +40,20 @@ router.get(`/${healthEndpoint}`, async (ctx) => {
 
 router.get(`/${sessionEndpoint}/doc/:docId`, async (ctx) => {
   const fullDocId = `/doc/${ctx.params.docId}`;
-  const sessionInfo = await qixSessionService.openSession(fullDocId, ctx.headers.authorization);
-  ctx.body = JSON.stringify(sessionInfo, undefined, '   ');
+  try {
+    const sessionInfo = await qixSessionService.openSession(fullDocId, ctx.headers.authorization);
+    ctx.body = JSON.stringify(sessionInfo, undefined, '   ');
+  } catch (err) {
+    ctx.throw(err.status || 500, err.message);
+  }
 });
 
 router.get(`/${sessionEndpoint}/session-doc`, async (ctx) => {
-  const sessionInfo = await qixSessionService.openSession('', ctx.headers.authorization);
-  if (sessionInfo) {
+  try {
+    const sessionInfo = await qixSessionService.openSession('', ctx.headers.authorization);
     ctx.body = JSON.stringify(sessionInfo, undefined, '   ');
-  } else {
-    // Return Service Unavailable if failing to open a session
-    ctx.status = 503;
+  } catch (err) {
+    ctx.throw(err.status || 500, err.message);
   }
 });
 
