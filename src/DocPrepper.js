@@ -45,8 +45,8 @@ class DocPrepper {
 
       return sessionId;
     } catch (err) {
-      logger.error(`Failed to prepare doc with error: ${err}`);
-      throw new Error(500, err);
+      logger.error(`Failed to open doc with error: ${err}`);
+      throw new Error(500, 'Failed to open doc');
     }
   }
 }
