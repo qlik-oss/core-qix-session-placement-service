@@ -1,8 +1,6 @@
-/* eslint import/no-unresolved:0, import/extensions:0, no-console:0 */
-
 const WebSocket = require('ws');
 const enigma = require('enigma.js');
-const qixSchema = require('../node_modules/enigma.js/schemas/qix/3.1/schema.json');
+const qixSchema = require('../node_modules/enigma.js/schemas/3.1.json');
 const uuid = require('uuid/v4');
 const logger = require('./Logger').get();
 
@@ -16,8 +14,7 @@ function createConfiguration(host, port, sessionId, jwt) {
     session: {
       disableCache: true,
       secure: false,
-      route: 'app/engineData',
-      ttl: DEFAULT_TTL,
+      route: `app/engineData/ttl/${DEFAULT_TTL}`,
       host,
       port,
     },

@@ -1,7 +1,5 @@
-const process = require('process');
 const Koa = require('koa');
 const Router = require('koa-router');
-const koaLoggerWinston = require('koa-logger-winston');
 const swagger = require('swagger2');
 const swagger2koa = require('swagger2-koa');
 const path = require('path');
@@ -14,9 +12,12 @@ const healthEndpoint = 'health';
 const sessionEndpoint = 'session';
 
 const app = new Koa();
-const router = new Router({ prefix: `/${apiVersion}` });
+const router = new Router({
+  prefix: `/${apiVersion}`,
+});
 const config = new Config();
 const document = swagger.loadDocumentSync(path.join(__dirname, './../doc/api-doc.yml'));
+let server;
 
 function onUnhandledError(err) {
   logger.error('Process encountered an unhandled error', err);
@@ -24,7 +25,7 @@ function onUnhandledError(err) {
 }
 
 process.on('SIGTERM', () => {
-  app.close(() => {
+  server.close(() => {
     logger.info('Process exiting on SIGTERM');
     process.exit(0);
   });
@@ -33,7 +34,9 @@ process.on('SIGTERM', () => {
 process.on('uncaughtException', onUnhandledError);
 process.on('unhandledRejection', onUnhandledError);
 
-router.get(`/${healthEndpoint}`, async (ctx) => { ctx.body = 'OK'; });
+router.get(`/${healthEndpoint}`, async (ctx) => {
+  ctx.body = 'OK';
+});
 
 router.get(`/${sessionEndpoint}/doc/:docId`, async (ctx) => {
   const fullDocId = `/doc/${ctx.params.docId}`;
@@ -43,15 +46,19 @@ router.get(`/${sessionEndpoint}/doc/:docId`, async (ctx) => {
 
 router.get(`/${sessionEndpoint}/session-doc`, async (ctx) => {
   const sessionInfo = await qixSessionService.openSession('', ctx.headers.authorization);
-  ctx.body = JSON.stringify(sessionInfo, undefined, '   ');
+  if (sessionInfo) {
+    ctx.body = JSON.stringify(sessionInfo, undefined, '   ');
+  } else {
+    // Return Service Unavailable if failing to open a session
+    ctx.status = 503;
+  }
 });
 
 app
   .use(swagger2koa.ui(document, '/openapi'))
-  .use(koaLoggerWinston(logger))
   .use(router.routes())
   .use(router.allowedMethods());
 
-app.listen(config.port);
+server = app.listen(config.port);
 
 logger.info(`Listening on port ${config.port}`);

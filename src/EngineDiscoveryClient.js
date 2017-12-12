@@ -1,11 +1,10 @@
 const http = require('http');
 const logger = require('./Logger').get();
-
 const Config = require('./Config');
 
 class EngineDiscoveryClient {
   static listEngines() {
-    return new Promise((resolve /* , reject*/) => {
+    return new Promise((resolve, reject) => {
       http.get({
         host: Config.miraHostName,
         port: Config.miraPort,
@@ -17,7 +16,7 @@ class EngineDiscoveryClient {
         });
         response.on('error', (d) => {
           logger.error(d);
-          resolve(d);
+          reject(d);
         });
         response.on('end', () => {
           try {
@@ -25,9 +24,12 @@ class EngineDiscoveryClient {
             resolve(parsed);
           } catch (parseErr) {
             logger.error(parseErr);
-            resolve(parseErr);
+            reject(parseErr);
           }
         });
+      }).on('error', (d) => {
+        logger.error(`Mira request returned HTTP error: ${d}`);
+        reject('No connection to Mira');
       });
     });
   }
