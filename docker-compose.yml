@@ -1,0 +1,23 @@
+version: "3.1"
+
+services:
+  qix-session-service:
+    image: qlikea/qliktive-qix-session-service${TAG} # If TAG is not set docker image with tag 'latest' will be used.
+    ports:
+      - "9455:9455"
+
+  mira:
+    image: qlikea/mira:0.0.8
+    ports:
+      - "9100:9100"
+    environment:
+     - MIRA_MODE=local
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  engine:
+    image: qlikea/engine:12.110.0
+    ports:
+      - "9076:9076"
+    labels:
+      qix-engine:
