@@ -44,7 +44,8 @@ router.get(`/${sessionEndpoint}/doc/:docId`, async (ctx) => {
     const sessionInfo = await qixSessionService.openSession(fullDocId, ctx.headers.authorization);
     ctx.body = JSON.stringify(sessionInfo, undefined, '   ');
   } catch (err) {
-    ctx.throw(err.status || 500, err.message);
+    logger.error(`Failed to open doc id ${ctx.params.docId} with error message: ${err}`);
+    ctx.status = err.status || 500;
   }
 });
 
@@ -53,7 +54,8 @@ router.get(`/${sessionEndpoint}/session-doc`, async (ctx) => {
     const sessionInfo = await qixSessionService.openSession('', ctx.headers.authorization);
     ctx.body = JSON.stringify(sessionInfo, undefined, '   ');
   } catch (err) {
-    ctx.throw(err.status || 500, err.message);
+    logger.error(`Failed to create a session doc with error message: ${err}`);
+    ctx.status = err.status || 500;
   }
 });
 
