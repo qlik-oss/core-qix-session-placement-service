@@ -13,7 +13,7 @@ class Logger {
       Logger.logger = new (winston.Logger)({
         transports: [
           new (winston.transports.Console)({
-            level: 'info',
+            level: process.env.LOG_LEVEL || 'info',
             humanReadableUnhandledException: true,
             formatter: options => JSON.stringify({
               logseverity: options.level.toUpperCase(),

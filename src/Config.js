@@ -1,6 +1,6 @@
 class Config {
   constructor() {
-    Config.miraHostName = process.env.MIRA_HOST_NAME ||
+    Config.miraHostName = process.env.MIRA_HOSTNAME ||
     (process.env.SESSION_SERVICE_CONTAINERIZED && process.env.SESSION_SERVICE_CONTAINERIZED.toLowerCase() === 'true' ? 'mira' : 'localhost');
     Config.miraPort = 9100;
 
