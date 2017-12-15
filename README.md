@@ -25,9 +25,9 @@ The following environment variables can optionally be set:
 
 ## Session Placement Strategy
 
-The QIX Session Service uses strategies for determining which QIX Engine to place a session on. There are currently two strategies implemented `Least-Load` and `Round Robin`. The `Least-Load` strategy and what metrics that are taken into consideration used is further described in the following [whitepaper](https://ca.qliktive.com/docs/master/tutorials/scalability/newspaper/).
+The QIX Session Service uses strategies for determining which QIX Engine to place a session on. There are currently two strategies implemented `Least-Load` and `Round Robin`. The `Least-Load` strategy and what metrics that are taken into consideration is further described in the following [whitepaper](https://ca.qliktive.com/docs/master/tutorials/scalability/newspaper/).
 
-The default strategy used is `Least-Load`, but which strategy to use can also be toggled with the `SESSION_STRATEGY` environment variable.
+The default strategy used is `Least-Load`, but the strategy can also be toggled with the `SESSION_STRATEGY` environment variable.
 
 ## Endpoints
 
