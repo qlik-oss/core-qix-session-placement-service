@@ -3,6 +3,7 @@ const engineSessionPrepper = require('./DocPrepper');
 const engineLoadBalancer = require('./LoadBalancer');
 const logger = require('./Logger').get();
 const createError = require('http-errors');
+const Config = require('./Config');
 
 class QixSessionService {
   /**
@@ -22,7 +23,14 @@ class QixSessionService {
     // Only load balance on healthy engines
     engines = engines.filter(instance => instance.engine.status === 'OK');
     // Select one of them and get the address.
-    const instance = engineLoadBalancer.roundRobin(engines);
+    let instance;
+
+    if (Config.sessionStrategy === 'roundrobin') {
+      instance = engineLoadBalancer.roundRobin(engines);
+    } else {
+      instance = engineLoadBalancer.leastLoad(engines);
+    }
+
     if (!instance) {
       logger.error('Engine load balancer did not return an engine instance');
       throw createError(503, 'No suitable QIX Engine available');

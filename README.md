@@ -21,10 +21,17 @@ The following environment variables can optionally be set:
 | LOG_LEVEL         | info                    | Minimum log level that the service outputs when logging to `stdout` |
 | MIRA_HOSTNAME     | mira                    | Hostname that should be used for service discovery |
 | PORT              | 9455                    | Port used by the qliktive-qix-session-service REST API |
+| SESSION_STRATEGY  | leastload               | Strategy to use for session placement. Can be `roundrobin` or `leastload` |
+
+## Session Placement Strategy
+
+The QIX Session Service uses strategies for determining which QIX Engine to place a session on. There are currently two strategies implemented `Least-Load` and `Round Robin`. The `Least-Load` strategy and what metrics that are taken into consideration is further described in the following [whitepaper](https://ca.qliktive.com/docs/master/tutorials/scalability/newspaper/).
+
+The default strategy used is `Least-Load`, but the strategy can also be toggled with the `SESSION_STRATEGY` environment variable.
 
 ## Endpoints
 
-The REST API is specified in the [api-doc.yml](./doc/api-doc.yml) OpenAPI document. Default port used by the qlivktive-qix-session-service is `9455`.
+The REST API is specified in the [api-doc.yml](./doc/api-doc.yml) OpenAPI document. Default port used by the qliktive-qix-session-service is `9455`.
 
 ### /session/session-doc
 
