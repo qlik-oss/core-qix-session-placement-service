@@ -46,3 +46,7 @@ Opens a session towards a specific document and returns the session info. Assume
 Circle CI is configured to build a new Docker image from all pushed commits on all branches of qliktive-qix-session-service. As part of this, the built Docker image is pushed to Docker Hub. If pushing to a feature branch (different from `master`), the Docker image is tagged with `<version>-<build-number>`, where `<version>` is fetched from [`package.json`](./package.json), and `<build-number>` is the automatically increased Circle CI build number given to each build. If pushing to `master` the image is also tagged with `latest`.
 
 Linting of the code and some basic smoke testing is part of the job pipeline and must succeed for the docker image to be published.
+
+## Contributing
+
+We welcome and encourage contributions! Please read [Open Source at Qlik R&D](https://github.com/qlik-oss/open-source) for more info on how to get involved.
