@@ -1,16 +1,9 @@
 {
     "extends": "airbnb-base",
     "rules": {
-        "no-console": "error",
-        "max-len": "off"
+        "no-console": "error"
     },
     "env": {
-      "node": true,
-      "mocha": true
-    },
-    "globals": {
-        "expect": true,
-        "sinon": true,
-        "chai": true
+      "node": true
     }
 }
