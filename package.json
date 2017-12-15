@@ -2,19 +2,20 @@
   "name": "qliktive-qix-session-service",
   "version": "0.0.1-0",
   "description": "Qliktive QIX Engine session management service",
+  "author": "QlikTech International AB",
+  "private": true,
+  "license": "MIT",
   "main": "src/index.js",
   "scripts": {
     "start": "node ./src/index.js",
     "lint": "eslint .",
-    "lint-fix": "eslint --fix ."
+    "lint-fix": "eslint --fix .",
+    "test:unit": "aw-test-runner ./test"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/qlik-ea/qliktive-qix-session-service.git"
   },
-  "author": "QlikTech International AB",
-  "private": true,
-  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/qlik-ea/qliktive-qix-session-service/issues"
   },

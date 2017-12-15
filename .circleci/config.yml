@@ -18,6 +18,10 @@ jobs:
           name: Run ESLint
           command:
             npm run lint
+      - run:
+          name: Run Unit Tests
+          command:
+            npm run test:unit
       - save_cache:
           key: npm-dependency-cache-{{ checksum "package.json" }}
           paths:
