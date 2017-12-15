@@ -22,7 +22,12 @@ describe('LoadBalancer', () => {
     });
 
     it('should go round robin on number of engines', () => {
-      const engines = [{ engine: { ip: '192.168.0.1' } }, { engine: { ip: '192.168.0.2' } }, { engine: { ip: '192.168.0.3' } }, { engine: { ip: '192.168.0.4' } }];
+      const engines = [
+        { engine: { ip: '192.168.0.1' } },
+        { engine: { ip: '192.168.0.2' } },
+        { engine: { ip: '192.168.0.3' } },
+        { engine: { ip: '192.168.0.4' } },
+      ];
       expect(LoadBalancer.roundRobin(engines)).to.equal(engines[0]);
       expect(LoadBalancer.roundRobin(engines)).to.equal(engines[1]);
       expect(LoadBalancer.roundRobin(engines)).to.equal(engines[2]);
@@ -31,7 +36,12 @@ describe('LoadBalancer', () => {
     });
 
     it('should return the first engine if the engines list decreases', () => {
-      const engines = [{ engine: { ip: '192.168.0.1' } }, { engine: { ip: '192.168.0.2' } }, { engine: { ip: '192.168.0.3' } }, { engine: { ip: '192.168.0.4' } }];
+      const engines = [
+        { engine: { ip: '192.168.0.1' } },
+        { engine: { ip: '192.168.0.2' } },
+        { engine: { ip: '192.168.0.3' } },
+        { engine: { ip: '192.168.0.4' } },
+      ];
       expect(LoadBalancer.roundRobin(engines)).to.equal(engines[0]);
       expect(LoadBalancer.roundRobin(engines)).to.equal(engines[1]);
 
@@ -45,7 +55,10 @@ describe('LoadBalancer', () => {
       expect(LoadBalancer.roundRobin(engines)).to.equal(engines[0]);
       expect(LoadBalancer.roundRobin(engines)).to.equal(engines[1]);
 
-      const engines2 = [{ engine: { ip: '192.168.0.1' } }, { engine: { ip: '192.168.0.2' } }, { engine: { ip: '192.168.0.3' } }];
+      const engines2 = [
+        { engine: { ip: '192.168.0.1' } },
+        { engine: { ip: '192.168.0.2' } },
+        { engine: { ip: '192.168.0.3' } }];
       expect(LoadBalancer.roundRobin(engines2)).to.equal(engines2[2]);
       expect(LoadBalancer.roundRobin(engines2)).to.equal(engines2[0]);
     });
