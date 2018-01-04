@@ -41,7 +41,7 @@ class QixSessionService {
       port,
     } = instance.engine;
 
-    logger.info(`Opening session against engine at ${ip}:${port}`);
+    logger.debug(`Opening session against engine at ${ip}:${port}`);
 
     try {
       // Prepare the session
@@ -54,9 +54,9 @@ class QixSessionService {
 
       if (docId.length !== 0) {
         sessionInfo.docId = docId;
-        logger.info(`Session with session id ${sessionInfo.sessionId} opened for doc ${sessionInfo.docId} on qix engine ${sessionInfo.ip}:${sessionInfo.port}`);
+        logger.debug(`Session with session id ${sessionInfo.sessionId} opened for doc ${sessionInfo.docId} on qix engine ${sessionInfo.ip}:${sessionInfo.port}`);
       } else {
-        logger.info(`Session with session id ${sessionInfo.sessionId} opened on qix engine ${sessionInfo.ip}:${sessionInfo.port}`);
+        logger.debug(`Session with session id ${sessionInfo.sessionId} opened on qix engine ${sessionInfo.ip}:${sessionInfo.port}`);
       }
 
       return sessionInfo;
