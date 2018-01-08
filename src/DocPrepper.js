@@ -7,7 +7,7 @@ const createError = require('http-errors');
 
 // number of seconds QIX Engine should keep the session alive after disconnecting
 // the last socket to a session:
-const DEFAULT_TTL = 5;
+const DEFAULT_TTL = 60;
 
 function createConfiguration(host, port, sessionId, jwt) {
   const config = {
