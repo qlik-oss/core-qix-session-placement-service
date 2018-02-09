@@ -33,7 +33,7 @@ class QixSessionService {
 
     if (!instance) {
       logger.error('Engine load balancer did not return an engine instance');
-      throw createError(503, 'No suitable QIX Engine available');
+      throw createError(503, 'No suitable Qlik Associative Engine available');
     }
 
     const {

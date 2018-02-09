@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   title: "Qliktive QIX session service"
-  description: "REST API for handling QIX Engine sessions in Qliktive"
+  description: "REST API for handling Qlik Associative Engine sessions in Qliktive"
   version: "0.0.1"
 host: "localhost:9455"
 schemes:
@@ -13,7 +13,7 @@ consumes:
   - "application/json"
 tags:
   - name: "session"
-    description: "API for QIX Engine session handling"
+    description: "API for Qlik Associative Engine session handling"
   - name: "health"
     description: "Health status of the service"
 paths:
@@ -22,7 +22,7 @@ paths:
       tags:
         - "session"
       summary: "Get a session for a document with docId"
-      description: "Finds a QIX Engine and opens the document for the user"
+      description: "Finds a Qlik Associative Engine and opens the document for the user"
       operationId: "openSession"
       produces: 
         - "application/json"
@@ -44,7 +44,7 @@ paths:
       tags:
         - "session"
       summary: "Get a session for a session document"
-      description: "Finds a QIX Engine and creates a session document for the user"
+      description: "Finds a Qlik Associative Engine and creates a session document for the user"
       operationId: "openSession"
       produces: 
           - "application/json"
@@ -64,7 +64,7 @@ paths:
           description: "The service is alive and healthy"
 definitions:
   session:
-    description: "Describes the QIX Engine session; what id and where the session is located"
+    description: "Describes the Qlik Associative Engine session; what id and where the session is located"
     type: "object"
     required:
       - ipAddress
@@ -72,13 +72,13 @@ definitions:
       - sessionId
     properties:
       ipAddress:
-        description: "IP Address of the QIX Engine"
+        description: "IP Address of the Qlik Associative Engine"
         type: "string"
       port:
-        description: "Port number exposed by the QIX Engine"
+        description: "Port number exposed by the Qlik Associative Engine"
         type: "number"
       sessionId:
-        description: "Guid identifying the QIX Engine session"
+        description: "Guid identifying the Qlik Associative Engine session"
         type: "string"
       docId:
         description: "Guid of the doc"

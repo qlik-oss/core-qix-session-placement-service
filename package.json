@@ -1,7 +1,7 @@
 {
   "name": "qliktive-qix-session-service",
   "version": "0.0.1-0",
-  "description": "Qliktive QIX Engine session management service",
+  "description": "Qliktive Qlik Associative Engine session management service",
   "author": "QlikTech International AB",
   "private": true,
   "license": "MIT",
