@@ -5,7 +5,7 @@ const uuid = require('uuid/v4');
 const logger = require('./Logger').get();
 const createError = require('http-errors');
 
-// number of seconds QIX Engine should keep the session alive after disconnecting
+// number of seconds Qlik Associative Engine should keep the session alive after disconnecting
 // the last socket to a session:
 const DEFAULT_TTL = 60;
 
