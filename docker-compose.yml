@@ -7,7 +7,7 @@ services:
       - "9455:9455"
 
   mira:
-    image: qlikea/mira:0.0.8
+    image: qlikea/mira:0.0.10
     ports:
       - "9100:9100"
     environment:
@@ -16,14 +16,14 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   engine1:
-    image: qlikea/engine:12.134.0
+    image: qlikea/engine:12.136.0
     ports:
       - "9276:9076"
     labels:
       qix-engine:
 
   engine2:
-    image: qlikea/engine:12.134.0
+    image: qlikea/engine:12.136.0
     ports:
       - "9176:9076"
     labels:
