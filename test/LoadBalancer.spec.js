@@ -119,9 +119,8 @@ describe('LoadBalancer', () => {
   });
 
   describe('Max Number of Sessions', () => {
-
     it('should remove engines that exceed max active sessions', () => {
-      const engines = require('./testdata.json');
+      const engines = require('./testdata.json'); // eslint-disable-line global-require
 
       // Check number of engines returned without a max number set
       let instances = LoadBalancer.checkMaxSessions(engines);
