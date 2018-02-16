@@ -135,7 +135,7 @@
                     "metric": [
                         {
                             "gauge": {
-                                "value": 100
+                                "value": 99
                             }
                         }
                     ]

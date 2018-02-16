@@ -21,7 +21,7 @@ class LoadBalancer {
     // Only load balance on healthy engines
     const healthyEngines = engines.filter(instance => instance.engine.status === 'OK');
     // Remove engines with too many active sessions if a threshold was defined
-    const filteredEngines = healthyEngines.length > 0 && Config.maxSessionsPerEngine ?
+    const filteredEngines = healthyEngines.length >= 0 && Config.maxSessionsPerEngine ?
       this.checkMaxSessions(healthyEngines) : healthyEngines;
 
     switch (Config.sessionStrategy) {
