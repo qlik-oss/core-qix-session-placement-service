@@ -21,7 +21,7 @@ class LoadBalancer {
     // Only load balance on healthy engines
     const healthyEngines = engines.filter(instance => instance.engine.status === 'OK');
     // Remove engines with too many active sessions if a threshold was defined
-    const filteredEngines = healthyEngines.length >= 0 && Config.maxSessionsPerEngine ?
+    const filteredEngines = healthyEngines.length > 0 && Config.maxSessionsPerEngine ?
       this.checkMaxSessions(healthyEngines) : healthyEngines;
 
     switch (Config.sessionStrategy) {
@@ -62,7 +62,7 @@ class LoadBalancer {
     return engines.filter((element) => {
       const sessionMetric = element.engine.metrics.filter(metric => metric.name === 'qix_active_sessions');
 
-      if (sessionMetric[0].metric[0].gauge.value > Config.maxSessionsPerEngine) {
+      if (sessionMetric[0].metric[0].gauge.value >= Config.maxSessionsPerEngine) {
         return false;
       }
       return true;
