@@ -27,10 +27,10 @@ class QixSessionService {
       throw createError(503, 'No suitable Qlik Associative Engine available');
     }
 
-    const {
-      ip,
-      port,
-    } = instance.engine;
+    const port = instance.engine.port;
+    // since qliktive is only using one network
+    // we know that we can take the ip of the first network.
+    const ip = instance.engine.networks[0].ip;
 
     logger.debug(`Opening session against engine at ${ip}:${port}`);
 
