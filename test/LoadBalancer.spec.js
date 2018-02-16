@@ -127,7 +127,7 @@ describe('LoadBalancer', () => {
       expect(instances.length).to.equal(2);
 
       // Set max number of session per node
-      process.env.MAX_SESSIONS_PER_ENGINE = 100;
+      process.env.SESSIONS_PER_ENGINE_THRESHOLD = 100;
       Config.init();
 
       // Verify number of engines returned

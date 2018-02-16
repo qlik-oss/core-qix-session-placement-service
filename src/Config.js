@@ -18,9 +18,9 @@ class Config {
       this.port = 9455;
     }
 
-    Config.maxSessionsPerEngine = parseInt(process.env.MAX_SESSIONS_PER_ENGINE, 10);
-    if (Config.maxSessionsPerEngine && !isNaN(Config.maxSessionsPerEngine)) {
-      logger.info(`Session service has been configured to allow maximum ${Config.maxSessionsPerEngine} sessions per engine`);
+    Config.sessionsPerEngineThreshold = parseInt(process.env.SESSIONS_PER_ENGINE_THRESHOLD, 10);
+    if (Config.sessionsPerEngineThreshold && !isNaN(Config.sessionsPerEngineThreshold)) {
+      logger.info(`Session service has been configured to not place new sessions on an engine exceeding ${Config.sessionsPerEngineThreshold} active sessions`);
     }
   }
 }
