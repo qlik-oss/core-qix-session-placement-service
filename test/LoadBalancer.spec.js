@@ -1,3 +1,5 @@
+const Config = require('../src/Config');
+
 describe('LoadBalancer', () => {
   let LoadBalancer;
 
@@ -113,6 +115,24 @@ describe('LoadBalancer', () => {
 
       const instance = LoadBalancer.leastLoad(engines);
       expect(instance.engine.health.mem.free).to.equal(12312);
+    });
+  });
+
+  describe('Max Number of Sessions', () => {
+    it('should remove engines that exceed max active sessions', () => {
+      const engines = require('./testdata.json'); // eslint-disable-line global-require
+
+      // Check number of engines returned without a max number set
+      let instances = LoadBalancer.checkMaxSessions(engines);
+      expect(instances.length).to.equal(2);
+
+      // Set max number of session per node
+      process.env.SESSIONS_PER_ENGINE_THRESHOLD = 100;
+      Config.init();
+
+      // Verify number of engines returned
+      instances = LoadBalancer.checkMaxSessions(engines);
+      expect(instances.length).to.equal(1);
     });
   });
 });

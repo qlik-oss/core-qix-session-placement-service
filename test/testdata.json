@@ -1,0 +1,2176 @@
+[
+    {
+        "engine": {
+            "ip": "172.19.0.5",
+            "port": 9076,
+            "metricsPort": 9090,
+            "health": {
+                "version": "12.138.0",
+                "started": "20180216T094833.000Z",
+                "mem": {
+                    "committed": 11.8125,
+                    "allocated": 20,
+                    "free": 1966.3046875
+                },
+                "cpu": {
+                    "total": 0
+                },
+                "session": {
+                    "active": 0,
+                    "total": 0
+                },
+                "apps": {
+                    "active_docs": [],
+                    "loaded_docs": [],
+                    "in_memory_docs": [],
+                    "calls": 0,
+                    "selections": 0
+                },
+                "users": {
+                    "active": 0,
+                    "total": 0
+                },
+                "cache": {
+                    "hits": 0,
+                    "lookups": 0,
+                    "added": 0,
+                    "replaced": 0,
+                    "bytes_added": 0
+                },
+                "saturated": false
+            },
+            "status": "OK",
+            "metrics": [
+                {
+                    "name": "exposer_bytes_transferred",
+                    "help": "bytesTransferred to metrics services",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "counter": {
+                                "value": 15366387
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "exposer_total_scrapes",
+                    "help": "Number of times metrics were scraped",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "counter": {
+                                "value": 1459
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "exposer_request_latencies",
+                    "help": "Latencies of serving scrape requests, in milliseconds",
+                    "type": "HISTOGRAM",
+                    "metric": [
+                        {
+                            "histogram": {
+                                "sampleCount": "1459",
+                                "sampleSum": 4465,
+                                "bucket": [
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 1
+                                    },
+                                    {
+                                        "cumulativeCount": "1330",
+                                        "upperBound": 5
+                                    },
+                                    {
+                                        "cumulativeCount": "1430",
+                                        "upperBound": 10
+                                    },
+                                    {
+                                        "cumulativeCount": "1458",
+                                        "upperBound": 20
+                                    },
+                                    {
+                                        "cumulativeCount": "1459",
+                                        "upperBound": 40
+                                    },
+                                    {
+                                        "cumulativeCount": "1459",
+                                        "upperBound": 80
+                                    },
+                                    {
+                                        "cumulativeCount": "1459",
+                                        "upperBound": 160
+                                    },
+                                    {
+                                        "cumulativeCount": "1459",
+                                        "upperBound": 320
+                                    },
+                                    {
+                                        "cumulativeCount": "1459",
+                                        "upperBound": 640
+                                    },
+                                    {
+                                        "cumulativeCount": "1459",
+                                        "upperBound": 1280
+                                    },
+                                    {
+                                        "cumulativeCount": "1459",
+                                        "upperBound": 2560
+                                    },
+                                    {
+                                        "cumulativeCount": "1459",
+                                        "upperBound": "Infinity"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_active_sessions",
+                    "help": "Current number of active session.",
+                    "type": "GAUGE",
+                    "metric": [
+                        {
+                            "gauge": {
+                                "value": 99
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_active_documents",
+                    "help": "Documents loaded into memory and have users connected.",
+                    "type": "GAUGE",
+                    "metric": [
+                        {
+                            "gauge": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_active_requests",
+                    "help": "Current number of requests.",
+                    "type": "GAUGE",
+                    "metric": [
+                        {
+                            "gauge": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_active_reloads",
+                    "help": "Number of active reloads.",
+                    "type": "GAUGE",
+                    "metric": [
+                        {
+                            "gauge": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_cache_memory_bytes",
+                    "help": "Current number of bytes in cache.",
+                    "type": "GAUGE",
+                    "metric": [
+                        {
+                            "gauge": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_open_qvf_files",
+                    "help": "Current number of open QVF files",
+                    "type": "GAUGE",
+                    "metric": [
+                        {
+                            "gauge": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_pending_qvf_file_monitor",
+                    "help": "Number of users waiting to access QVF files",
+                    "type": "GAUGE",
+                    "metric": [
+                        {
+                            "gauge": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_expiry_seconds",
+                    "help": "Qix license expiry time.",
+                    "type": "GAUGE",
+                    "metric": [
+                        {
+                            "gauge": {
+                                "value": 2123215
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_sessions_total",
+                    "help": "Total number of sessions since start",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_documents_total",
+                    "help": "Total number of documents that were loaded since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "status",
+                                    "value": "ok"
+                                }
+                            ],
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_documents_total",
+                    "help": "Total number of documents that were loaded since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "status",
+                                    "value": "corrupt"
+                                }
+                            ],
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_documents_total",
+                    "help": "Total number of documents that were loaded since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "status",
+                                    "value": "fail"
+                                }
+                            ],
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_requests_total",
+                    "help": "Total number of requests.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_selections_total",
+                    "help": "Total number of selections.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_cache_hits_total",
+                    "help": "Total number of cache hits since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_cache_lookups_total",
+                    "help": "Total number of cache lookups since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_cache_objects_added_total",
+                    "help": "Total number of cache object added since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_log_message_total",
+                    "help": "Total number of log messages since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "level",
+                                    "value": "notice"
+                                }
+                            ],
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_log_message_total",
+                    "help": "Total number of log messages since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "level",
+                                    "value": "info"
+                                }
+                            ],
+                            "counter": {
+                                "value": 10
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_log_message_total",
+                    "help": "Total number of log messages since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "level",
+                                    "value": "warning"
+                                }
+                            ],
+                            "counter": {
+                                "value": 13
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_log_message_total",
+                    "help": "Total number of log messages since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "level",
+                                    "value": "error"
+                                }
+                            ],
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_log_message_total",
+                    "help": "Total number of log messages since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "level",
+                                    "value": "debug"
+                                }
+                            ],
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_request_duration_seconds",
+                    "help": "Time it takes for a request to finish including wait/idle times.",
+                    "type": "HISTOGRAM",
+                    "metric": [
+                        {
+                            "histogram": {
+                                "sampleCount": "0",
+                                "sampleSum": 0,
+                                "bucket": [
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.005
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.01
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.025
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.05
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.1
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.25
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 1
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 2.5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 10
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": "Infinity"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_request_cpu_seconds",
+                    "help": "CPU time used by the request.",
+                    "type": "HISTOGRAM",
+                    "metric": [
+                        {
+                            "histogram": {
+                                "sampleCount": "0",
+                                "sampleSum": 0,
+                                "bucket": [
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.005
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.01
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.025
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.05
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.1
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.25
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 1
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 2.5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 10
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": "Infinity"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_request_memory_bytes",
+                    "help": "Memory allocated by the request.",
+                    "type": "HISTOGRAM",
+                    "metric": [
+                        {
+                            "histogram": {
+                                "sampleCount": "0",
+                                "sampleSum": 0,
+                                "bucket": [
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 2097152
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 4194304
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 8388608
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 16777216
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 33554432
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 67108864
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 134217728
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 268435456
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 536870912
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 1073741824
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": "Infinity"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_reloads_duration_seconds",
+                    "help": "Reload status is ok for successful reloads, error code for failed reloads.",
+                    "type": "HISTOGRAM",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "status",
+                                    "value": "ok"
+                                }
+                            ],
+                            "histogram": {
+                                "sampleCount": "0",
+                                "sampleSum": 0,
+                                "bucket": [
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 10
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 25
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 50
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 100
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 225
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 450
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 900
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 1800
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 3600
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": "Infinity"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_reloads_duration_seconds",
+                    "help": "Reload status is ok for successful reloads, error code for failed reloads.",
+                    "type": "HISTOGRAM",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "status",
+                                    "value": "fail"
+                                }
+                            ],
+                            "histogram": {
+                                "sampleCount": "0",
+                                "sampleSum": 0,
+                                "bucket": [
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 10
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 25
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 50
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 100
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 225
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 450
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 900
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 1800
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 3600
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": "Infinity"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_qvf_lock_time_seconds",
+                    "help": "QVF lock await time.",
+                    "type": "HISTOGRAM",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "mode",
+                                    "value": "exclusive"
+                                }
+                            ],
+                            "histogram": {
+                                "sampleCount": "0",
+                                "sampleSum": 0,
+                                "bucket": [
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.25
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.75
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 1
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 2
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 10
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 15
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 30
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 60
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": "Infinity"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_qvf_lock_time_seconds",
+                    "help": "QVF lock await time.",
+                    "type": "HISTOGRAM",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "mode",
+                                    "value": "shared"
+                                }
+                            ],
+                            "histogram": {
+                                "sampleCount": "0",
+                                "sampleSum": 0,
+                                "bucket": [
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.25
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.75
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 1
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 2
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 10
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 15
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 30
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 60
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": "Infinity"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "http_response_size_bytes",
+                    "help": "Http response size.",
+                    "type": "HISTOGRAM",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "method",
+                                    "value": "GET"
+                                },
+                                {
+                                    "name": "path",
+                                    "value": "/healthcheck"
+                                },
+                                {
+                                    "name": "status_code",
+                                    "value": "200"
+                                }
+                            ],
+                            "histogram": {
+                                "sampleCount": "1460",
+                                "sampleSum": 675633,
+                                "bucket": [
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 16384
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 32768
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 65536
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 131072
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 524288
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 1048576
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 2097152
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 4194304
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": "Infinity"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "http_request_duration_seconds",
+                    "help": "Http duration.",
+                    "type": "HISTOGRAM",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "method",
+                                    "value": "GET"
+                                },
+                                {
+                                    "name": "path",
+                                    "value": "/healthcheck"
+                                },
+                                {
+                                    "name": "status_code",
+                                    "value": "200"
+                                }
+                            ],
+                            "histogram": {
+                                "sampleCount": "1460",
+                                "sampleSum": 0.2262654000000003,
+                                "bucket": [
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 0.005
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 0.01
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 0.025
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 0.05
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 0.1
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 0.25
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 0.5
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 1
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 2.5
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 5
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 10
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": "Infinity"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "local": {
+            "Id": "65d457510ab87de1f0ce3ae8e12f2d61336c2c20db4da208c76b37629cf906ff",
+            "Names": [
+                "/qliktiveqixsessionservice_engine1_1"
+            ],
+            "Image": "qlikea/engine:12.138.0",
+            "ImageID": "sha256:009120f4590f02644a7cc018d9c6093349a4a7103a76e0b9a4de2a41be631ad9",
+            "Command": "/usr/local/bin/engine --MigrationPort -1 -S QvLogUseStdoutLogger=1 -S AllowExternalSocket=1 -S EnableSwagger=1 -S EnablePrometheus=1 -S PrometheusServicePort=9090 -S PerformanceLogVerbosity=0 -S UseCGroupsStats=1 -S AdjustMemUseFromOs=0 -S AcceptEULA=yes",
+            "Created": 1518774511,
+            "Ports": [
+                {
+                    "IP": "0.0.0.0",
+                    "PrivatePort": 9076,
+                    "PublicPort": 9276,
+                    "Type": "tcp"
+                },
+                {
+                    "PrivatePort": 9090,
+                    "Type": "tcp"
+                }
+            ],
+            "Labels": {
+                "com.docker.compose.config-hash": "b72bc6a3e50d81a5661b609d0444f1dc8cf584f4306b1d170525b03fccba9886",
+                "com.docker.compose.container-number": "1",
+                "com.docker.compose.oneoff": "False",
+                "com.docker.compose.project": "qliktiveqixsessionservice",
+                "com.docker.compose.service": "engine1",
+                "com.docker.compose.version": "1.18.0",
+                "qix-engine": ""
+            },
+            "State": "running",
+            "Status": "Up Less than a second",
+            "HostConfig": {
+                "NetworkMode": "qliktiveqixsessionservice_default"
+            },
+            "NetworkSettings": {
+                "Networks": {
+                    "qliktiveqixsessionservice_default": {
+                        "IPAMConfig": null,
+                        "Links": null,
+                        "Aliases": null,
+                        "NetworkID": "395c050ef8e7521ea4ae411eb555882dc43f5f98cb6c38228748fe9756836951",
+                        "EndpointID": "e2a2d1effc3e679f9740cf139537bc607f29cf7f36ec9e692ee1a06be927522d",
+                        "Gateway": "172.19.0.1",
+                        "IPAddress": "172.19.0.5",
+                        "IPPrefixLen": 16,
+                        "IPv6Gateway": "",
+                        "GlobalIPv6Address": "",
+                        "GlobalIPv6PrefixLen": 0,
+                        "MacAddress": "02:42:ac:13:00:05",
+                        "DriverOpts": null
+                    }
+                }
+            },
+            "Mounts": []
+        }
+    },
+    {
+        "engine": {
+            "ip": "172.19.0.4",
+            "port": 9076,
+            "metricsPort": 9090,
+            "health": {
+                "version": "12.138.0",
+                "started": "20180216T094834.000Z",
+                "mem": {
+                    "committed": 9.75,
+                    "allocated": 16,
+                    "free": 1969.32421875
+                },
+                "cpu": {
+                    "total": 0
+                },
+                "session": {
+                    "active": 0,
+                    "total": 0
+                },
+                "apps": {
+                    "active_docs": [],
+                    "loaded_docs": [],
+                    "in_memory_docs": [],
+                    "calls": 0,
+                    "selections": 0
+                },
+                "users": {
+                    "active": 0,
+                    "total": 0
+                },
+                "cache": {
+                    "hits": 0,
+                    "lookups": 0,
+                    "added": 0,
+                    "replaced": 0,
+                    "bytes_added": 0
+                },
+                "saturated": false
+            },
+            "status": "OK",
+            "metrics": [
+                {
+                    "name": "exposer_bytes_transferred",
+                    "help": "bytesTransferred to metrics services",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "counter": {
+                                "value": 15354798
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "exposer_total_scrapes",
+                    "help": "Number of times metrics were scraped",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "counter": {
+                                "value": 1458
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "exposer_request_latencies",
+                    "help": "Latencies of serving scrape requests, in milliseconds",
+                    "type": "HISTOGRAM",
+                    "metric": [
+                        {
+                            "histogram": {
+                                "sampleCount": "1458",
+                                "sampleSum": 4578,
+                                "bucket": [
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 1
+                                    },
+                                    {
+                                        "cumulativeCount": "1316",
+                                        "upperBound": 5
+                                    },
+                                    {
+                                        "cumulativeCount": "1431",
+                                        "upperBound": 10
+                                    },
+                                    {
+                                        "cumulativeCount": "1457",
+                                        "upperBound": 20
+                                    },
+                                    {
+                                        "cumulativeCount": "1458",
+                                        "upperBound": 40
+                                    },
+                                    {
+                                        "cumulativeCount": "1458",
+                                        "upperBound": 80
+                                    },
+                                    {
+                                        "cumulativeCount": "1458",
+                                        "upperBound": 160
+                                    },
+                                    {
+                                        "cumulativeCount": "1458",
+                                        "upperBound": 320
+                                    },
+                                    {
+                                        "cumulativeCount": "1458",
+                                        "upperBound": 640
+                                    },
+                                    {
+                                        "cumulativeCount": "1458",
+                                        "upperBound": 1280
+                                    },
+                                    {
+                                        "cumulativeCount": "1458",
+                                        "upperBound": 2560
+                                    },
+                                    {
+                                        "cumulativeCount": "1458",
+                                        "upperBound": "Infinity"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_active_sessions",
+                    "help": "Current number of active session.",
+                    "type": "GAUGE",
+                    "metric": [
+                        {
+                            "gauge": {
+                                "value": 120
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_active_documents",
+                    "help": "Documents loaded into memory and have users connected.",
+                    "type": "GAUGE",
+                    "metric": [
+                        {
+                            "gauge": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_active_requests",
+                    "help": "Current number of requests.",
+                    "type": "GAUGE",
+                    "metric": [
+                        {
+                            "gauge": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_active_reloads",
+                    "help": "Number of active reloads.",
+                    "type": "GAUGE",
+                    "metric": [
+                        {
+                            "gauge": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_cache_memory_bytes",
+                    "help": "Current number of bytes in cache.",
+                    "type": "GAUGE",
+                    "metric": [
+                        {
+                            "gauge": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_open_qvf_files",
+                    "help": "Current number of open QVF files",
+                    "type": "GAUGE",
+                    "metric": [
+                        {
+                            "gauge": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_pending_qvf_file_monitor",
+                    "help": "Number of users waiting to access QVF files",
+                    "type": "GAUGE",
+                    "metric": [
+                        {
+                            "gauge": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_expiry_seconds",
+                    "help": "Qix license expiry time.",
+                    "type": "GAUGE",
+                    "metric": [
+                        {
+                            "gauge": {
+                                "value": 2123215
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_sessions_total",
+                    "help": "Total number of sessions since start",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_documents_total",
+                    "help": "Total number of documents that were loaded since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "status",
+                                    "value": "ok"
+                                }
+                            ],
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_documents_total",
+                    "help": "Total number of documents that were loaded since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "status",
+                                    "value": "corrupt"
+                                }
+                            ],
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_documents_total",
+                    "help": "Total number of documents that were loaded since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "status",
+                                    "value": "fail"
+                                }
+                            ],
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_requests_total",
+                    "help": "Total number of requests.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_selections_total",
+                    "help": "Total number of selections.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_cache_hits_total",
+                    "help": "Total number of cache hits since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_cache_lookups_total",
+                    "help": "Total number of cache lookups since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_cache_objects_added_total",
+                    "help": "Total number of cache object added since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_log_message_total",
+                    "help": "Total number of log messages since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "level",
+                                    "value": "notice"
+                                }
+                            ],
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_log_message_total",
+                    "help": "Total number of log messages since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "level",
+                                    "value": "info"
+                                }
+                            ],
+                            "counter": {
+                                "value": 10
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_log_message_total",
+                    "help": "Total number of log messages since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "level",
+                                    "value": "warning"
+                                }
+                            ],
+                            "counter": {
+                                "value": 13
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_log_message_total",
+                    "help": "Total number of log messages since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "level",
+                                    "value": "error"
+                                }
+                            ],
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_log_message_total",
+                    "help": "Total number of log messages since start.",
+                    "type": "COUNTER",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "level",
+                                    "value": "debug"
+                                }
+                            ],
+                            "counter": {
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_request_duration_seconds",
+                    "help": "Time it takes for a request to finish including wait/idle times.",
+                    "type": "HISTOGRAM",
+                    "metric": [
+                        {
+                            "histogram": {
+                                "sampleCount": "0",
+                                "sampleSum": 0,
+                                "bucket": [
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.005
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.01
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.025
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.05
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.1
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.25
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 1
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 2.5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 10
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": "Infinity"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_request_cpu_seconds",
+                    "help": "CPU time used by the request.",
+                    "type": "HISTOGRAM",
+                    "metric": [
+                        {
+                            "histogram": {
+                                "sampleCount": "0",
+                                "sampleSum": 0,
+                                "bucket": [
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.005
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.01
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.025
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.05
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.1
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.25
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 1
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 2.5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 10
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": "Infinity"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_request_memory_bytes",
+                    "help": "Memory allocated by the request.",
+                    "type": "HISTOGRAM",
+                    "metric": [
+                        {
+                            "histogram": {
+                                "sampleCount": "0",
+                                "sampleSum": 0,
+                                "bucket": [
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 2097152
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 4194304
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 8388608
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 16777216
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 33554432
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 67108864
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 134217728
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 268435456
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 536870912
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 1073741824
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": "Infinity"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_reloads_duration_seconds",
+                    "help": "Reload status is ok for successful reloads, error code for failed reloads.",
+                    "type": "HISTOGRAM",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "status",
+                                    "value": "ok"
+                                }
+                            ],
+                            "histogram": {
+                                "sampleCount": "0",
+                                "sampleSum": 0,
+                                "bucket": [
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 10
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 25
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 50
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 100
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 225
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 450
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 900
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 1800
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 3600
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": "Infinity"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_reloads_duration_seconds",
+                    "help": "Reload status is ok for successful reloads, error code for failed reloads.",
+                    "type": "HISTOGRAM",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "status",
+                                    "value": "fail"
+                                }
+                            ],
+                            "histogram": {
+                                "sampleCount": "0",
+                                "sampleSum": 0,
+                                "bucket": [
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 10
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 25
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 50
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 100
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 225
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 450
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 900
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 1800
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 3600
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": "Infinity"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_qvf_lock_time_seconds",
+                    "help": "QVF lock await time.",
+                    "type": "HISTOGRAM",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "mode",
+                                    "value": "exclusive"
+                                }
+                            ],
+                            "histogram": {
+                                "sampleCount": "0",
+                                "sampleSum": 0,
+                                "bucket": [
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.25
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.75
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 1
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 2
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 10
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 15
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 30
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 60
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": "Infinity"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "qix_qvf_lock_time_seconds",
+                    "help": "QVF lock await time.",
+                    "type": "HISTOGRAM",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "mode",
+                                    "value": "shared"
+                                }
+                            ],
+                            "histogram": {
+                                "sampleCount": "0",
+                                "sampleSum": 0,
+                                "bucket": [
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.25
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 0.75
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 1
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 2
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 5
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 10
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 15
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 30
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": 60
+                                    },
+                                    {
+                                        "cumulativeCount": "0",
+                                        "upperBound": "Infinity"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "http_response_size_bytes",
+                    "help": "Http response size.",
+                    "type": "HISTOGRAM",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "method",
+                                    "value": "GET"
+                                },
+                                {
+                                    "name": "path",
+                                    "value": "/healthcheck"
+                                },
+                                {
+                                    "name": "status_code",
+                                    "value": "200"
+                                }
+                            ],
+                            "histogram": {
+                                "sampleCount": "1460",
+                                "sampleSum": 672101,
+                                "bucket": [
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 16384
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 32768
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 65536
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 131072
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 524288
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 1048576
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 2097152
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 4194304
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": "Infinity"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "http_request_duration_seconds",
+                    "help": "Http duration.",
+                    "type": "HISTOGRAM",
+                    "metric": [
+                        {
+                            "label": [
+                                {
+                                    "name": "method",
+                                    "value": "GET"
+                                },
+                                {
+                                    "name": "path",
+                                    "value": "/healthcheck"
+                                },
+                                {
+                                    "name": "status_code",
+                                    "value": "200"
+                                }
+                            ],
+                            "histogram": {
+                                "sampleCount": "1460",
+                                "sampleSum": 0.22137679999999987,
+                                "bucket": [
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 0.005
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 0.01
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 0.025
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 0.05
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 0.1
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 0.25
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 0.5
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 1
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 2.5
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 5
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": 10
+                                    },
+                                    {
+                                        "cumulativeCount": "1460",
+                                        "upperBound": "Infinity"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "local": {
+            "Id": "2f61e46cb9b1918dabadad9e78bd1b9872a883a7eb492d0efa8ea6fbc2d6ff7f",
+            "Names": [
+                "/qliktiveqixsessionservice_engine2_1"
+            ],
+            "Image": "qlikea/engine:12.138.0",
+            "ImageID": "sha256:009120f4590f02644a7cc018d9c6093349a4a7103a76e0b9a4de2a41be631ad9",
+            "Command": "/usr/local/bin/engine --MigrationPort -1 -S QvLogUseStdoutLogger=1 -S AllowExternalSocket=1 -S EnableSwagger=1 -S EnablePrometheus=1 -S PrometheusServicePort=9090 -S PerformanceLogVerbosity=0 -S UseCGroupsStats=1 -S AdjustMemUseFromOs=0 -S AcceptEULA=yes",
+            "Created": 1518774511,
+            "Ports": [
+                {
+                    "PrivatePort": 9090,
+                    "Type": "tcp"
+                },
+                {
+                    "IP": "0.0.0.0",
+                    "PrivatePort": 9076,
+                    "PublicPort": 9176,
+                    "Type": "tcp"
+                }
+            ],
+            "Labels": {
+                "com.docker.compose.config-hash": "6289493c4165fa9b91cff13b1d7a3de7b73107a7b67b82160732e3e10ea2c68d",
+                "com.docker.compose.container-number": "1",
+                "com.docker.compose.oneoff": "False",
+                "com.docker.compose.project": "qliktiveqixsessionservice",
+                "com.docker.compose.service": "engine2",
+                "com.docker.compose.version": "1.18.0",
+                "qix-engine": ""
+            },
+            "State": "running",
+            "Status": "Up Less than a second",
+            "HostConfig": {
+                "NetworkMode": "qliktiveqixsessionservice_default"
+            },
+            "NetworkSettings": {
+                "Networks": {
+                    "qliktiveqixsessionservice_default": {
+                        "IPAMConfig": null,
+                        "Links": null,
+                        "Aliases": null,
+                        "NetworkID": "395c050ef8e7521ea4ae411eb555882dc43f5f98cb6c38228748fe9756836951",
+                        "EndpointID": "30a9fdd85662cba78cc3bc90b96902c6f202f1f907f9a056601a15373ab49c5b",
+                        "Gateway": "172.19.0.1",
+                        "IPAddress": "172.19.0.4",
+                        "IPPrefixLen": 16,
+                        "IPv6Gateway": "",
+                        "GlobalIPv6Address": "",
+                        "GlobalIPv6PrefixLen": 0,
+                        "MacAddress": "02:42:ac:13:00:04",
+                        "DriverOpts": null
+                    }
+                }
+            },
+            "Mounts": []
+        }
+    }
+]

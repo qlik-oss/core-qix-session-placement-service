@@ -15,7 +15,8 @@ const app = new Koa();
 const router = new Router({
   prefix: `/${apiVersion}`,
 });
-const config = new Config();
+
+Config.init();
 const document = swagger.loadDocumentSync(path.join(__dirname, './../doc/api-doc.yml'));
 let server;
 
@@ -64,6 +65,6 @@ app
   .use(router.routes())
   .use(router.allowedMethods());
 
-server = app.listen(config.port);
+server = app.listen(Config.port);
 
-logger.info(`Listening on port ${config.port}`);
+logger.info(`Listening on port ${Config.port}`);

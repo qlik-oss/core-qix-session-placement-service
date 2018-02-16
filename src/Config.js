@@ -1,7 +1,7 @@
 const logger = require('./Logger').get();
 
 class Config {
-  constructor() {
+  static init() {
     Config.miraHostName = process.env.MIRA_HOSTNAME || (process.env.SESSION_SERVICE_CONTAINERIZED && process.env.SESSION_SERVICE_CONTAINERIZED.toLowerCase() === 'true' ? 'mira' : 'localhost');
     Config.miraPort = 9100;
 
@@ -16,6 +16,11 @@ class Config {
     this.port = parseInt(process.env.PORT, 10);
     if (!this.port || isNaN(this.port)) {
       this.port = 9455;
+    }
+
+    Config.sessionsPerEngineThreshold = parseInt(process.env.SESSIONS_PER_ENGINE_THRESHOLD, 10);
+    if (Config.sessionsPerEngineThreshold && !isNaN(Config.sessionsPerEngineThreshold)) {
+      logger.info(`Session service has been configured to not place new sessions on an engine exceeding ${Config.sessionsPerEngineThreshold} active sessions`);
     }
   }
 }
