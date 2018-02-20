@@ -1,0 +1,48 @@
+version: "3.1"
+
+# This file is prepared to build a local service and debug it (it will
+# not start unless you attach a debugger)
+
+# $ ACCEPT_EULA=yes docker-compose -f dev.yml up --build
+# Open up Chrome, and type chrome://inspect and attach to localhost:5858 -
+# alternatively, set up VSCode remote Node.js debugging on localhost:5858.
+
+# Benchmarking:
+# Tip: You may use `docker stats` to get an overview of the load between containers.
+# $ docker network ls
+# $ docker run --rm --network <network> --entrypoint sh -it byrnedo/alpine-curl
+# Inside the docker container, do something like:
+# while (true); do curl http://qix-session-service/v1/doc/session-doc -f -s --header "Authorization: Bearer 123"; done
+
+services:
+  qix-session-service:
+    build: .
+    entrypoint: node --inspect-brk=0.0.0.0:5858 /app/src/index.js
+    ports:
+      - "9455:9455"
+      - "5858:5858"
+
+  mira:
+    image: qlikea/mira:0.1.0
+    ports:
+      - "9100:9100"
+    environment:
+     - MIRA_MODE=local
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  engine1:
+    image: qlikea/engine:12.139.0
+    command: -S AcceptEULA=${ACCEPT_EULA}
+    ports:
+      - "9276:9076"
+    labels:
+      qix-engine: ""
+
+  engine2:
+    image: qlikea/engine:12.139.0
+    command: -S AcceptEULA=${ACCEPT_EULA}
+    ports:
+      - "9176:9076"
+    labels:
+      qix-engine: ""
