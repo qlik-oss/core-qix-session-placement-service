@@ -47,7 +47,7 @@ jobs:
           name: Spin up a local setup
           command: |
             # Spin up a local setup with the previously built docker image.
-            TAG=:$(cat ./version.txt) ACCEPT_EULA=yes SESSIONS_PER_ENGINE_THRESHOLD=10 docker-compose up -d
+            TAG=:$(cat ./version.txt) ACCEPT_EULA=yes docker-compose up -d
       - run:
           name: Check that service reaches status healthy
           command: |
@@ -81,7 +81,7 @@ jobs:
             docker run --rm byrnedo/alpine-curl http://$GATEWAY_IP_ADDR:9455/v1/session/session-doc -f --header "Authorization: Bearer 123"
 
             # Check that the session service serves metrics
-            docker run --rm byrnedo/alpine-curl http://$GATEWAY_IP_ADDR:9455/v1/metrics -f | grep "active_sessions_nodes_total 1"
+            docker run --rm byrnedo/alpine-curl http://$GATEWAY_IP_ADDR:9455/v1/metrics -f | grep "active_sessions_nodes_total"
       - deploy:
           name: Push image to Docker Hub
           command: |

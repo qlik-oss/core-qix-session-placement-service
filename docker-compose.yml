@@ -3,8 +3,6 @@ version: "3.1"
 services:
   qix-session-service:
     image: qlikea/qliktive-qix-session-service${TAG} # If TAG is not set docker image with tag 'latest' will be used.
-    environment:
-     - SESSIONS_PER_ENGINE_THRESHOLD=${SESSIONS_PER_ENGINE_THRESHOLD}
     ports:
       - "9455:9455"
 
