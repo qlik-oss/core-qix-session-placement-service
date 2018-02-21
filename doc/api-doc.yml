@@ -26,7 +26,7 @@ paths:
       operationId: "openSession"
       produces: 
         - "application/json"
-      parameters: 
+      parameters:
         - name: "docId"
           in: "path"
           description: "Guid of the doc to open"
@@ -35,7 +35,7 @@ paths:
       responses:
         "200":
           description: "successful operation"
-          schema: 
+          schema:
             $ref: "#/definitions/session"
         "404":
           description: "Document not found"
@@ -46,7 +46,7 @@ paths:
       summary: "Get a session for a session document"
       description: "Finds a Qlik Associative Engine and creates a session document for the user"
       operationId: "openSession"
-      produces: 
+      produces:
           - "application/json"
       responses:
         "200":
@@ -62,6 +62,17 @@ paths:
       responses:
         "200":
           description: "The service is alive and healthy"
+  /metrics:
+    get:
+      description: Returns metrics of the session service
+      produces:
+        - application/json; charset=utf-8
+        - text/plain; charset=utf-8
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
 definitions:
   session:
     description: "Describes the Qlik Associative Engine session; what id and where the session is located"
