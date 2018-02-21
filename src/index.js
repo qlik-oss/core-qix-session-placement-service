@@ -6,17 +6,21 @@ const path = require('path');
 const Config = require('./Config');
 const qixSessionService = require('./QixSessionService');
 const logger = require('./Logger').get();
+const prom = require('prom-client');
+const metrics = require('./Metrics');
+
+Config.init();
 
 const apiVersion = 'v1';
 const healthEndpoint = 'health';
 const sessionEndpoint = 'session';
+const metricsEndpoint = 'metrics';
 
 const app = new Koa();
 const router = new Router({
   prefix: `/${apiVersion}`,
 });
 
-Config.init();
 const document = swagger.loadDocumentSync(path.join(__dirname, './../doc/api-doc.yml'));
 let server;
 
@@ -60,7 +64,16 @@ router.get(`/${sessionEndpoint}/session-doc`, async (ctx) => {
   }
 });
 
+router.get(`/${metricsEndpoint}`, async (ctx) => {
+  if (ctx.accepts('text')) {
+    ctx.body = prom.register.metrics();
+  } else {
+    ctx.body = prom.register.getMetricsAsJSON();
+  }
+});
+
 app
+  .use(metrics())
   .use(swagger2koa.ui(document, '/openapi'))
   .use(router.routes())
   .use(router.allowedMethods());
