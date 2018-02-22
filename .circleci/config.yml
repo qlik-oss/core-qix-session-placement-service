@@ -79,6 +79,9 @@ jobs:
 
             # Open a session through the session service
             docker run --rm byrnedo/alpine-curl http://$GATEWAY_IP_ADDR:9455/v1/session/session-doc -f --header "Authorization: Bearer 123"
+
+            # Check that the session service serves metrics
+            docker run --rm byrnedo/alpine-curl http://$GATEWAY_IP_ADDR:9455/v1/metrics -f | grep "active_sessions_nodes_total"
       - deploy:
           name: Push image to Docker Hub
           command: |

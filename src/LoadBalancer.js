@@ -1,6 +1,16 @@
 const Config = require('./Config');
+const prom = require('prom-client');
 
 let roundRobinCounter = 0;
+
+const activeSessionsTotalGauge = new prom.Gauge({
+  name: 'active_sessions_nodes_total',
+  help: 'Number of active session in total on all engine nodes',
+});
+const remainingSessionsGauge = new prom.Gauge({
+  name: 'remaining_sessions_nodes_total',
+  help: 'Number of remaining sessions in total on all engine nodes that can be created before reaching threshold',
+});
 
 function compareResources(a, b) {
   // RAM free takes priority, but if equal then CPU is the deciding factor
@@ -59,14 +69,28 @@ class LoadBalancer {
   // Method for discarding engines that have more active sessions
   // than specified by env variable SESSIONS_PER_ENGINE_THRESHOLD.
   static checkMaxSessions(engines) {
-    return engines.filter((element) => {
+    let totalSessions = 0;
+    const filteredEngines = engines.filter((element) => {
       const sessionMetric = element.engine.metrics.filter(metric => metric.name === 'qix_active_sessions');
-
-      if (sessionMetric[0].metric[0].gauge.value >= Config.sessionsPerEngineThreshold) {
+      const nbrSessions = sessionMetric[0].metric[0].gauge.value;
+      totalSessions += nbrSessions;
+      if (nbrSessions >= Config.sessionsPerEngineThreshold) {
         return false;
       }
       return true;
     });
+
+    const timestamp = Date.now();
+    // Record total active sessions on all nodes
+    activeSessionsTotalGauge.set(totalSessions, timestamp);
+
+    // Record number of remaining sessions before threshold is reached. Could be negative.
+    if (Config.sessionsPerEngineThreshold) {
+      const nbrTotalAllowedSessions = engines.length * Config.sessionsPerEngineThreshold;
+      remainingSessionsGauge.set(nbrTotalAllowedSessions - totalSessions, timestamp);
+    }
+
+    return filteredEngines;
   }
 }
 

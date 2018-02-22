@@ -2,13 +2,17 @@ const Config = require('../src/Config');
 
 describe('LoadBalancer', () => {
   let LoadBalancer;
+  let prom;
 
   beforeEach(() => {
     LoadBalancer = require('../src/LoadBalancer'); // eslint-disable-line global-require
+    prom = require('prom-client');  // eslint-disable-line global-require
   });
 
   afterEach(() => {
     delete require.cache[require.resolve('../src/LoadBalancer')];
+    prom.register.clear();
+    delete require.cache[require.resolve('prom-client')];
   });
 
   describe('Round Robin', () => {
