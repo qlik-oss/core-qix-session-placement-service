@@ -1,5 +1,5 @@
 const Config = require('./Config');
-const prom = require('prom-client');
+const prom = require('@qlik/express-prom-client').promClient;
 
 let roundRobinCounter = 0;
 
