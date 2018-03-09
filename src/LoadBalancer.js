@@ -1,5 +1,5 @@
 const Config = require('./Config');
-const prom = require('prom-client');
+const prom = require('http-metrics-middleware').promClient;
 
 let roundRobinCounter = 0;
 

@@ -6,13 +6,13 @@ describe('LoadBalancer', () => {
 
   beforeEach(() => {
     LoadBalancer = require('../src/LoadBalancer'); // eslint-disable-line global-require
-    prom = require('prom-client');  // eslint-disable-line global-require
+    prom = require('http-metrics-middleware').promClient;  // eslint-disable-line global-require
   });
 
   afterEach(() => {
     delete require.cache[require.resolve('../src/LoadBalancer')];
     prom.register.clear();
-    delete require.cache[require.resolve('prom-client')];
+    delete require.cache[require.resolve('http-metrics-middleware')];
   });
 
   describe('Round Robin', () => {

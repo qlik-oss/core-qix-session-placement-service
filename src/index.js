@@ -6,10 +6,13 @@ const path = require('path');
 const Config = require('./Config');
 const qixSessionService = require('./QixSessionService');
 const logger = require('./Logger').get();
-const prom = require('prom-client');
-const metrics = require('./Metrics');
+const MetricsMiddleware = require('http-metrics-middleware');
+const c2k = require('koa-connect');
+
+const prom = MetricsMiddleware.promClient;
 
 Config.init();
+const metrics = new MetricsMiddleware();
 
 const apiVersion = 'v1';
 const healthEndpoint = 'health';
@@ -73,7 +76,7 @@ router.get(`/${metricsEndpoint}`, async (ctx) => {
 });
 
 app
-  .use(metrics())
+  .use(c2k(metrics.initRoutes()))
   .use(swagger2koa.ui(document, '/openapi'))
   .use(router.routes())
   .use(router.allowedMethods());
