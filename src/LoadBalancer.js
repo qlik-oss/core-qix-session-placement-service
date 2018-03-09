@@ -1,5 +1,5 @@
 const Config = require('./Config');
-const prom = require('@qlik/express-prom-client').promClient;
+const prom = require('http-metrics-middleware').promClient;
 
 let roundRobinCounter = 0;
 

@@ -6,7 +6,7 @@ const path = require('path');
 const Config = require('./Config');
 const qixSessionService = require('./QixSessionService');
 const logger = require('./Logger').get();
-const MetricsMiddleware = require('@qlik/express-prom-client');
+const MetricsMiddleware = require('http-metrics-middleware');
 const c2k = require('koa-connect');
 
 const prom = MetricsMiddleware.promClient;

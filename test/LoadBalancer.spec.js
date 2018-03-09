@@ -6,7 +6,7 @@ describe('LoadBalancer', () => {
 
   beforeEach(() => {
     LoadBalancer = require('../src/LoadBalancer'); // eslint-disable-line global-require
-    prom = require('@qlik/express-prom-client').promClient;  // eslint-disable-line global-require
+    prom = require('http-metrics-middleware').promClient;  // eslint-disable-line global-require
   });
 
   afterEach(() => {

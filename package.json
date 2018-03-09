@@ -21,9 +21,9 @@
   },
   "homepage": "https://github.com/qlik-ea/qliktive-qix-session-service#readme",
   "dependencies": {
-    "@qlik/express-prom-client": "1.3.4",
     "enigma.js": "2.2.0",
     "http-errors": "1.6.2",
+    "http-metrics-middleware": "^1.0.1",
     "koa": "2.2.0",
     "koa-connect": "^2.0.1",
     "koa-router": "7.1.1",
