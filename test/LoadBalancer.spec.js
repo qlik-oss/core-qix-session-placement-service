@@ -12,7 +12,7 @@ describe('LoadBalancer', () => {
   afterEach(() => {
     delete require.cache[require.resolve('../src/LoadBalancer')];
     prom.register.clear();
-    delete require.cache[require.resolve('prom-client')];
+    delete require.cache[require.resolve('http-metrics-middleware')];
   });
 
   describe('Round Robin', () => {
