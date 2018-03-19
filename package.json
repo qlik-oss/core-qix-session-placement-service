@@ -1,7 +1,7 @@
 {
-  "name": "qliktive-qix-session-service",
+  "name": "core-qix-session-placement-service",
   "version": "0.0.1-0",
-  "description": "Qliktive Qlik Associative Engine session management service",
+  "description": "Qliktive Qlik Associative Engine session placement service",
   "author": "QlikTech International AB",
   "private": true,
   "license": "MIT",
@@ -14,12 +14,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/qlik-ea/qliktive-qix-session-service.git"
+    "url": "https://github.com/qlik-ea/core-qix-session-placement-service.git"
   },
   "bugs": {
-    "url": "https://github.com/qlik-ea/qliktive-qix-session-service/issues"
+    "url": "https://github.com/qlik-ea/core-qix-session-placement-service/issues"
   },
-  "homepage": "https://github.com/qlik-ea/qliktive-qix-session-service#readme",
+  "homepage": "https://github.com/qlik-ea/core-qix-session-placement-service#readme",
   "dependencies": {
     "enigma.js": "2.2.0",
     "http-errors": "1.6.2",

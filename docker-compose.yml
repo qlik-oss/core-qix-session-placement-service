@@ -1,7 +1,7 @@
 version: "3.1"
 
 services:
-  qix-session-service:
+  session-placement:
     image: qlikea/qliktive-qix-session-service${TAG} # If TAG is not set docker image with tag 'latest' will be used.
     ports:
       - "9455:9455"

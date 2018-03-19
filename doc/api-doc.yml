@@ -57,7 +57,7 @@ paths:
     get:
       tags:
         - "health"
-      summary: "Get health status of qix-session-service"
+      summary: "Get health status"
       description: ""
       responses:
         "200":
