@@ -1,16 +1,16 @@
-# qliktive-qix-session-service
+# core-qix-session-placement-service
 
 **NOTE: This repository contains an example service for the [Qliktive Assisted Prescription](https://github.com/qlik-ea/qliktive-custom-analytics) use case.**
 
 ## Status
 
-[![CircleCI](https://circleci.com/gh/qlik-ea/qliktive-qix-session-service.svg?style=shield&circle-token=900edd7d10992c2e85734c3b696eac9ddfb6cfde)](https://circleci.com/gh/qlik-ea/qliktive-qix-session-service)
+[![CircleCI](https://circleci.com/gh/qlik-ea/core-qix-session-placement-service.svg?style=shield&circle-token=900edd7d10992c2e85734c3b696eac9ddfb6cfde)](https://circleci.com/gh/qlik-ea/core-qix-session-placement-service)
 
 ## Overview
 
-The QIX Session Service provides a session to a specific document ID or creates a session app. It uses [Mira](https://github.com/qlik-ea/mira) for discovering engines in an orchestration and based on strategy chooses a QIX Engine to open a session against.
+This service provides a session to a specific document ID or creates a session app. It uses [Mira](https://github.com/qlik-ea/mira) for discovering engines in an orchestration and based on strategy chooses a QIX Engine to open a session against.
 
-How the qliktive-qix-session-service is used in the [Qliktive Assisted Prescription](https://github.com/qlik-ea/qliktive-custom-analytics) use case is further described [here](https://github.com/qlik-ea/qliktive-custom-analytics/blob/master/docs/system-design/qix-engine-sessions.md).
+How the service is used in the [Qliktive Assisted Prescription](https://github.com/qlik-ea/qliktive-custom-analytics) use case is further described [here](https://github.com/qlik-ea/qliktive-custom-analytics/blob/master/docs/system-design/qix-engine-sessions.md).
 
 ## Environment Variables
 
@@ -20,7 +20,7 @@ The following environment variables can optionally be set:
 | ------------------| ----------------------- | ----------- |
 | LOG_LEVEL         | info                    | Minimum log level that the service outputs when logging to `stdout` |
 | MIRA_HOSTNAME     | mira                    | Hostname that should be used for service discovery |
-| PORT              | 9455                    | Port used by the qliktive-qix-session-service REST API |
+| PORT              | 9455                    | Port used by the service REST API |
 | SESSION_STRATEGY  | leastload               | Strategy to use for session placement. Can be `roundrobin` or `leastload` |
 
 ## Session Placement Strategy
@@ -31,7 +31,7 @@ The default strategy used is `Least-Load`, but the strategy can also be toggled 
 
 ## Endpoints
 
-The REST API is specified in the [api-doc.yml](./doc/api-doc.yml) OpenAPI document. Default port used by the qliktive-qix-session-service is `9455`.
+The REST API is specified in the [api-doc.yml](./doc/api-doc.yml) OpenAPI document. Default port used by the service is `9455`.
 
 ### /session/session-doc
 
@@ -43,7 +43,7 @@ Opens a session towards a specific document and returns the session info. Assume
 
 ## Circle CI
 
-Circle CI is configured to build a new Docker image from all pushed commits on all branches of qliktive-qix-session-service. As part of this, the built Docker image is pushed to Docker Hub. If pushing to a feature branch (different from `master`), the Docker image is tagged with `<version>-<build-number>`, where `<version>` is fetched from [`package.json`](./package.json), and `<build-number>` is the automatically increased Circle CI build number given to each build. If pushing to `master` the image is also tagged with `latest`.
+Circle CI is configured to build a new Docker image from all pushed commits on all branches in this git repository. As part of this, the built Docker image is pushed to Docker Hub. If pushing to a feature branch (different from `master`), the Docker image is tagged with `<version>-<build-number>`, where `<version>` is fetched from [`package.json`](./package.json), and `<build-number>` is the automatically increased Circle CI build number given to each build. If pushing to `master` the image is also tagged with `latest`.
 
 Linting of the code and some basic smoke testing is part of the job pipeline and must succeed for the docker image to be published.
 

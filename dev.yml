@@ -12,10 +12,10 @@ version: "3.1"
 # $ docker network ls
 # $ docker run --rm --network <network> --entrypoint sh -it byrnedo/alpine-curl
 # Inside the docker container, do something like:
-# while (true); do curl http://qix-session-service/v1/doc/session-doc -f -s --header "Authorization: Bearer 123"; done
+# while (true); do curl http://session-placement/v1/doc/session-doc -f -s --header "Authorization: Bearer 123"; done
 
 services:
-  qix-session-service:
+  session-placement:
     build: .
     entrypoint: node --inspect-brk=0.0.0.0:5858 /app/src/index.js
     ports:

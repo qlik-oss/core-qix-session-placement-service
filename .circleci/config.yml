@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:8
-    working_directory: ~/qliktive-qix-session-service
+    working_directory: ~/core-qix-session-placement-service
     environment:
       DOCKER_REPO: qlikea/qliktive-qix-session-service
     steps:
@@ -53,12 +53,12 @@ jobs:
           command: |
             set +e
 
-            # Check that qix-session-service is healthy
-            CONTAINER_ID=$(docker ps -aqf "name=qix-session-service")
+            # Check that the service is healthy
+            CONTAINER_ID=$(docker ps -aqf "name=session-placement")
             echo "Container id is $CONTAINER_ID"
 
             RETRIES=0
-             while [[ "$STATUS" != "healthy" && $RETRIES -le 30 ]]; do
+            while [[ "$STATUS" != "healthy" && $RETRIES -le 30 ]]; do
               STATUS=$(docker inspect -f '{{.State.Health.Status}}' "$CONTAINER_ID")
               echo "Container status is $STATUS"
               sleep 2
@@ -73,7 +73,7 @@ jobs:
           name: Verify that a session can be opened
           command: |
             # Find out IP address of the service
-            CONTAINER_ID=$(docker ps -aqf "name=qix-session-service")
+            CONTAINER_ID=$(docker ps -aqf "name=session-placement")
             GATEWAY_IP_ADDR=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.Gateway}}{{end}}' "$CONTAINER_ID")
             echo "GATEWAY_IP_ADDR=$GATEWAY_IP_ADDR"
 
