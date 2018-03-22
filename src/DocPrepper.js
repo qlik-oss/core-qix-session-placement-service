@@ -9,6 +9,12 @@ const createError = require('http-errors');
 const DEFAULT_TTL = 60;
 
 function createConfiguration(host, port, sessionId, jwt) {
+  const headers = {
+    'X-Qlik-Session': sessionId
+  };
+  if (jwt) {
+    headers.Authorization = jwt;
+  }
   const config = {
     schema: {
       structs: {
@@ -34,10 +40,7 @@ function createConfiguration(host, port, sessionId, jwt) {
     url: `ws://${host}:${port}/app/engineData/ttl/${DEFAULT_TTL}`,
     createSocket(url) {
       return new WebSocket(url, {
-        headers: {
-          'X-Qlik-Session': sessionId,
-          Authorization: jwt,
-        },
+        headers
       });
     },
   };
