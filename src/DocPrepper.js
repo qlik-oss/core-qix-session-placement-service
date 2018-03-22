@@ -10,7 +10,7 @@ const DEFAULT_TTL = 60;
 
 function createConfiguration(host, port, sessionId, jwt) {
   const headers = {
-    'X-Qlik-Session': sessionId
+    'X-Qlik-Session': sessionId,
   };
   if (jwt) {
     headers.Authorization = jwt;
@@ -40,7 +40,7 @@ function createConfiguration(host, port, sessionId, jwt) {
     url: `ws://${host}:${port}/app/engineData/ttl/${DEFAULT_TTL}`,
     createSocket(url) {
       return new WebSocket(url, {
-        headers
+        headers,
       });
     },
   };
