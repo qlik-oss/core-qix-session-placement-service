@@ -26,10 +26,19 @@ function compareResources(a, b) {
   return 1;
 }
 
+// Returns true when NO kubernetes pod deletion timestamp is found
+function isNotTerminating(instance) {
+  return !(
+    instance.kubernetes &&
+    instance.kubernetes.metadata &&
+    !!instance.kubernetes.metadata.deletionTimestamp
+  );
+}
+
 class LoadBalancer {
   static giveMeAnEngine(engines) {
     // Only load balance on healthy engines
-    const healthyEngines = engines.filter(instance => instance.engine.status === 'OK');
+    const healthyEngines = engines.filter(instance => instance.engine.status === 'OK').filter(isNotTerminating);
     // Remove engines with too many active sessions if a threshold was defined
     const filteredEngines = healthyEngines.length > 0 && Config.sessionsPerEngineThreshold ?
       this.checkMaxSessions(healthyEngines) : healthyEngines;
