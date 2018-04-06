@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
-  title: "Qliktive QIX session service"
-  description: "REST API for handling Qlik Associative Engine sessions in Qliktive"
+  title: "Qlik Core QIX session service"
+  description: "REST API for handling Qlik Associative Engine sessions in Qlik Core"
   version: "0.0.1"
 host: "localhost:9455"
 schemes:

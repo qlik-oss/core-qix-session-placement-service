@@ -1,16 +1,16 @@
 # core-qix-session-placement-service
 
-**NOTE: This repository contains an example service for the [Qliktive Assisted Prescription](https://github.com/qlik-ea/qliktive-custom-analytics) use case.**
+**NOTE: This repository contains an example service for the [Qlik Core Assisted Prescription](https://github.com/qlik-oss/core-assisted-prescription) use case.**
 
 ## Status
 
-[![CircleCI](https://circleci.com/gh/qlik-ea/core-qix-session-placement-service.svg?style=shield&circle-token=900edd7d10992c2e85734c3b696eac9ddfb6cfde)](https://circleci.com/gh/qlik-ea/core-qix-session-placement-service)
+[![CircleCI](https://circleci.com/gh/qlik-oss/core-qix-session-placement-service.svg?style=shield)](https://circleci.com/gh/qlik-oss/core-qix-session-placement-service)
 
 ## Overview
 
-This service provides a session to a specific document ID or creates a session app. It uses [Mira](https://github.com/qlik-ea/mira) for discovering engines in an orchestration and based on strategy chooses a QIX Engine to open a session against.
+This service provides a session to a specific document ID or creates a session app. It uses [Mira](https://github.com/qlik-oss/mira) for discovering engines in an orchestration and based on strategy chooses a QIX Engine to open a session against.
 
-How the service is used in the [Qliktive Assisted Prescription](https://github.com/qlik-ea/qliktive-custom-analytics) use case is further described [here](https://github.com/qlik-ea/qliktive-custom-analytics/blob/master/docs/system-design/qix-engine-sessions.md).
+How the service is used in the [Qlik Core Assisted Prescription](https://github.com/qlik-oss/core-assisted-prescription) use case is further described [here](https://github.com/qlik-oss/core-assisted-prescription/blob/master/docs/system-design/qix-engine-sessions.md).
 
 ## Environment Variables
 
@@ -25,7 +25,7 @@ The following environment variables can optionally be set:
 
 ## Session Placement Strategy
 
-The QIX Session Service uses strategies for determining which QIX Engine to place a session on. There are currently two strategies implemented `Least-Load` and `Round Robin`. The `Least-Load` strategy and what metrics that are taken into consideration is further described in the following [whitepaper](https://ca.qliktive.com/docs/master/tutorials/scalability/newspaper/).
+The QIX Session Service uses strategies for determining which QIX Engine to place a session on. There are currently two strategies implemented `Least-Load` and `Round Robin`. The `Least-Load` strategy and what metrics that are taken into consideration is further described in the following [whitepaper](https://qlikcore.com/tutorials/scalability/newspaper/).
 
 The default strategy used is `Least-Load`, but the strategy can also be toggled with the `SESSION_STRATEGY` environment variable.
 

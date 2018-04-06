@@ -1034,7 +1034,7 @@
             "Names": [
                 "/qliktiveqixsessionservice_engine1_1"
             ],
-            "Image": "qlikea/engine:12.138.0",
+            "Image": "qlikcore/engine:12.160.0",
             "ImageID": "sha256:009120f4590f02644a7cc018d9c6093349a4a7103a76e0b9a4de2a41be631ad9",
             "Command": "/usr/local/bin/engine --MigrationPort -1 -S QvLogUseStdoutLogger=1 -S AllowExternalSocket=1 -S EnableSwagger=1 -S EnablePrometheus=1 -S PrometheusServicePort=9090 -S PerformanceLogVerbosity=0 -S UseCGroupsStats=1 -S AdjustMemUseFromOs=0 -S AcceptEULA=yes",
             "Created": 1518774511,
@@ -2121,7 +2121,7 @@
             "Names": [
                 "/qliktiveqixsessionservice_engine2_1"
             ],
-            "Image": "qlikea/engine:12.138.0",
+            "Image": "qlikcore/engine:12.160.0",
             "ImageID": "sha256:009120f4590f02644a7cc018d9c6093349a4a7103a76e0b9a4de2a41be631ad9",
             "Command": "/usr/local/bin/engine --MigrationPort -1 -S QvLogUseStdoutLogger=1 -S AllowExternalSocket=1 -S EnableSwagger=1 -S EnablePrometheus=1 -S PrometheusServicePort=9090 -S PerformanceLogVerbosity=0 -S UseCGroupsStats=1 -S AdjustMemUseFromOs=0 -S AcceptEULA=yes",
             "Created": 1518774511,
