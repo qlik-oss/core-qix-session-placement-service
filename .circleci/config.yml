@@ -5,7 +5,7 @@ jobs:
       - image: circleci/node:8
     working_directory: ~/core-qix-session-placement-service
     environment:
-      DOCKER_REPO: qlikea/qliktive-qix-session-service
+      DOCKER_REPO: qlikcore/qix-session-placement-service
     steps:
       - checkout
       - restore_cache:
