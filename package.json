@@ -10,7 +10,7 @@
     "start": "node ./src/index.js",
     "lint": "eslint .",
     "lint-fix": "eslint --fix .",
-    "test:unit": "aw-test-runner ./test"
+    "test:unit": "aw ./test"
   },
   "repository": {
     "type": "git",
@@ -34,7 +34,7 @@
     "ws": "4.0.0"
   },
   "devDependencies": {
-    "after-work.js": "2.0.0",
+    "after-work.js": "4.1.0",
     "eslint": "3.19.0",
     "eslint-config-airbnb-base": "11.1.3",
     "eslint-plugin-import": "2.2.0"
