@@ -5,7 +5,7 @@ class Config {
     Config.miraHostName = process.env.MIRA_HOSTNAME || (process.env.SESSION_SERVICE_CONTAINERIZED && process.env.SESSION_SERVICE_CONTAINERIZED.toLowerCase() === 'true' ? 'mira' : 'localhost');
     Config.miraPort = 9100;
 
-    Config.sessionStrategy = process.env.SESSION_STRATEGY || 'leastload';
+    Config.sessionStrategy = process.env.SESSION_STRATEGY || 'roundrobin';
     const SUPPORTED_STRATEGIES = ['leastload', 'roundrobin'];
 
     if (SUPPORTED_STRATEGIES.indexOf(Config.sessionStrategy) === -1) {
