@@ -54,7 +54,7 @@ jobs:
             set +e
 
             # Check that the service is healthy
-            CONTAINER_ID=$(docker ps -aqf "name=session-placement")
+            CONTAINER_ID=$(docker ps -aqf "ancestor=$DOCKER_REPO:$(cat ./version.txt)")
             echo "Container id is $CONTAINER_ID"
 
             RETRIES=0
@@ -73,7 +73,7 @@ jobs:
           name: Verify that a session can be opened
           command: |
             # Find out IP address of the service
-            CONTAINER_ID=$(docker ps -aqf "name=session-placement")
+            CONTAINER_ID=$(docker ps -aqf "ancestor=$DOCKER_REPO:$(cat ./version.txt)")
             GATEWAY_IP_ADDR=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.Gateway}}{{end}}' "$CONTAINER_ID")
             echo "GATEWAY_IP_ADDR=$GATEWAY_IP_ADDR"
 
