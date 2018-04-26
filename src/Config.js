@@ -6,7 +6,7 @@ class Config {
     Config.miraPort = 9100;
 
     Config.sessionStrategy = process.env.SESSION_STRATEGY || 'leastload';
-    const SUPPORTED_STRATEGIES = ['leastload', 'roundrobin'];
+    const SUPPORTED_STRATEGIES = ['weighted', 'leastload', 'roundrobin'];
 
     if (SUPPORTED_STRATEGIES.indexOf(Config.sessionStrategy) === -1) {
       throw new Error(`Incorrect session strategy. Supported session strategies are: ${SUPPORTED_STRATEGIES.join(', ')}`);
@@ -21,6 +21,8 @@ class Config {
     Config.sessionsPerEngineThreshold = parseInt(process.env.SESSIONS_PER_ENGINE_THRESHOLD, 10);
     if (Config.sessionsPerEngineThreshold && !isNaN(Config.sessionsPerEngineThreshold)) {
       logger.info(`Session service has been configured to not place new sessions on an engine exceeding ${Config.sessionsPerEngineThreshold} active sessions`);
+    } else if (Config.sessionStrategy === 'weighted') {
+      throw new Error('SESSIONS_PER_ENGINE_THRESHOLD needs to be set when using the "weighted" session strategy.');
     }
   }
 }

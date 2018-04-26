@@ -26,6 +26,7 @@ function compareResources(a, b) {
   return 1;
 }
 
+
 // Returns true when NO kubernetes pod deletion timestamp is found
 function isNotTerminating(instance) {
   return !(
@@ -44,6 +45,8 @@ class LoadBalancer {
       this.checkMaxSessions(healthyEngines) : healthyEngines;
 
     switch (Config.sessionStrategy) {
+      case 'weighted':
+        return this.weightedLoad(filteredEngines);
       case 'roundrobin':
         return this.roundRobin(filteredEngines);
       default:
@@ -73,6 +76,41 @@ class LoadBalancer {
     }
     const sortedEngines = engines.sort(compareResources);
     return sortedEngines[0];
+  }
+
+  static weightedLoad(engines) {
+    const maxSessionsPerEngine = Config.sessionsPerEngineThreshold;
+
+    // Calculate an array containing the maximum allowed session count
+    // minus actual session count for each engine
+    const sessionsPossibleToAllocateArray = engines.map((instance) => {
+      if (!instance.engine.metrics) {
+        return 0;
+      }
+      const sessionMetric = instance.engine.metrics.filter(metric => metric.name === 'qix_active_sessions');
+      const nbrSessions = sessionMetric[0].metric[0].gauge.value;
+      if (nbrSessions <= maxSessionsPerEngine) {
+        return maxSessionsPerEngine - nbrSessions;
+      }
+      return 0;
+    });
+    const totalSessionsLeft = sessionsPossibleToAllocateArray
+      .reduce((total, num) => total + num, 0);
+
+    // magicNumber is a random number between 0 and totalSessionsLeft
+    const magicNumber = (totalSessionsLeft * Math.random());
+
+    // Loop over all engines and stop when aggregated sum of available
+    // session spaces is above the magic number. The likelihood of an
+    // engine being selected is proportional to the number of session spaces left
+    let sessionSpaceSum = 0;
+    for (let i = 0; i < engines.length; i += 1) {
+      sessionSpaceSum += sessionsPossibleToAllocateArray[i];
+      if (magicNumber <= sessionSpaceSum) {
+        return engines[i];
+      }
+    }
+    return undefined;
   }
 
   // Method for discarding engines that have more active sessions

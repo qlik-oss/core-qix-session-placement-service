@@ -122,6 +122,49 @@ describe('LoadBalancer', () => {
     });
   });
 
+
+  describe('Weighted Load', () => {
+    beforeEach(() => {       // Set max number of session per node
+      process.env.SESSIONS_PER_ENGINE_THRESHOLD = 130;
+      Config.init();
+    });
+    afterEach(() => { Config.sessionsPerEngineThreshold = undefined; });
+
+    it('should return undefined if no engines', () => {
+      const engines = [];
+      expect(LoadBalancer.weightedLoad(engines)).to.equal(undefined);
+    });
+
+    it('should return the same engine if only one engine available', () => {
+      const engines = [{ engine: { ip: '192.168.0.1', health: { mem: { free: 12313 }, cpu: { total: 12345 } } } }];
+
+      const instance = LoadBalancer.weightedLoad(engines);
+      expect(instance.engine.ip).to.equal('192.168.0.1');
+
+      const nextInstance = LoadBalancer.weightedLoad(engines);
+      expect(nextInstance.engine.ip).to.equal('192.168.0.1');
+    });
+
+    it('should return the engine with likelihood corresponding the amount of available session slots left', () => {
+      const engines = require('./testdata.json'); // eslint-disable-line global-require
+      const counters = {};
+      // Since we are dealing with randomness run the algorithm a
+      // few times and see where the rests converge.
+      for (let i = 0; i < 10000; i += 1) {
+        const chosen = LoadBalancer.weightedLoad(engines);
+        if (chosen) {
+          counters[chosen.engine.ip] = (counters[chosen.engine.ip] || 0) + 1;
+        }
+      }
+      const actualRatio = counters['172.19.0.5'] / counters['172.19.0.4'];
+      // Calculate the expected ratio. The 99 and 120 magic numbers below
+      // reflect the qix_active_sessions values in the test data
+      const expectedRatio =
+        (Config.sessionsPerEngineThreshold - 99) / (Config.sessionsPerEngineThreshold - 120);
+      expect(actualRatio).to.be.within(expectedRatio * 0.8, expectedRatio * 1.2);
+    });
+  });
+
   describe('Max Number of Sessions', () => {
     it('should remove engines that exceed max active sessions', () => {
       const engines = require('./testdata.json'); // eslint-disable-line global-require
