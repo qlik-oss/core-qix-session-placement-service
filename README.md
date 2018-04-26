@@ -21,11 +21,11 @@ The following environment variables can optionally be set:
 | LOG_LEVEL         | info                    | Minimum log level that the service outputs when logging to `stdout` |
 | MIRA_HOSTNAME     | mira                    | Hostname that should be used for service discovery |
 | PORT              | 9455                    | Port used by the service REST API |
-| SESSION_STRATEGY  | leastload               | Strategy to use for session placement. Can be `roundrobin` or `leastload` |
+| SESSION_STRATEGY  | leastload               | Strategy to use for session placement. Can be `roundrobin` or `leastload` or `weighted` |
 
 ## Session Placement Strategy
 
-The QIX Session Service uses strategies for determining which QIX Engine to place a session on. There are currently two strategies implemented `Least-Load` and `Round Robin`. The `Least-Load` strategy and what metrics that are taken into consideration is further described in the following [whitepaper](https://qlikcore.com/tutorials/scalability/newspaper/).
+The QIX Session Service uses strategies for determining which QIX Engine to place a session on. There are currently three strategies implemented `Least-Load` and `Round Robin` and `Weighted`. The `Least-Load` strategy and what metrics that are taken into consideration is further described in the following [whitepaper](https://qlikcore.com/docs/tutorials/scalability/newspaper/).
 
 The default strategy used is `Least-Load`, but the strategy can also be toggled with the `SESSION_STRATEGY` environment variable.
 
