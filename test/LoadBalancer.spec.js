@@ -148,6 +148,8 @@ describe('LoadBalancer', () => {
     it('should return the engine with likelihood corresponding the amount of available session slots left', () => {
       const engines = require('./testdata.json'); // eslint-disable-line global-require
       const counters = {};
+      // Since we are dealing with randomness run the algorithm a
+      // few times and see where the rests converge.
       for (let i = 0; i < 10000; i += 1) {
         const chosen = LoadBalancer.weightedLoad(engines);
         if (chosen) {
@@ -155,6 +157,8 @@ describe('LoadBalancer', () => {
         }
       }
       const actualRatio = counters['172.19.0.5'] / counters['172.19.0.4'];
+      // Calculate the expected ratio. The 99 and 120 magic numbers below
+      // reflect the qix_active_sessions values in the test data
       const expectedRatio =
         (Config.sessionsPerEngineThreshold - 99) / (Config.sessionsPerEngineThreshold - 120);
       expect(actualRatio).to.be.within(expectedRatio * 0.8, expectedRatio * 1.2);

@@ -83,11 +83,11 @@ class LoadBalancer {
 
     // Calculate an array containing the maximum allowed session count
     // minus actual session count for each engine
-    const sessionsPossibleToAllocateArray = engines.map((engine) => {
-      if (!engine.engine.metrics) {
+    const sessionsPossibleToAllocateArray = engines.map((instance) => {
+      if (!instance.engine.metrics) {
         return 0;
       }
-      const sessionMetric = engine.engine.metrics.filter(metric => metric.name === 'qix_active_sessions');
+      const sessionMetric = instance.engine.metrics.filter(metric => metric.name === 'qix_active_sessions');
       const nbrSessions = sessionMetric[0].metric[0].gauge.value;
       if (nbrSessions <= maxSessionsPerEngine) {
         return maxSessionsPerEngine - nbrSessions;
