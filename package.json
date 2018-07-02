@@ -22,7 +22,7 @@
   "homepage": "https://github.com/qlik-oss/core-qix-session-placement-service#readme",
   "dependencies": {
     "enigma.js": "2.2.1",
-    "http-errors": "1.6.2",
+    "http-errors": "1.6.3",
     "http-metrics-middleware": "1.1.0",
     "koa": "2.5.1",
     "koa-connect": "2.0.1",
