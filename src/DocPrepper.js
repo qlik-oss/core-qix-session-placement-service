@@ -1,8 +1,8 @@
 const WebSocket = require('ws');
 const enigma = require('enigma.js');
 const uuid = require('uuid/v4');
-const logger = require('./Logger').get();
 const createError = require('http-errors');
+const logger = require('./Logger').get();
 
 // number of seconds Qlik Associative Engine should keep the session alive after disconnecting
 // the last socket to a session:

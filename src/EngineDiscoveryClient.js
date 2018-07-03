@@ -29,7 +29,7 @@ class EngineDiscoveryClient {
         });
       }).on('error', (d) => {
         logger.error(`Mira request returned HTTP error: ${d}`);
-        reject('No connection to Mira');
+        reject(new Error('No connection to Mira'));
       });
     });
   }
