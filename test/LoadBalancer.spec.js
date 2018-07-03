@@ -6,7 +6,7 @@ describe('LoadBalancer', () => {
 
   beforeEach(() => {
     LoadBalancer = require('../src/LoadBalancer'); // eslint-disable-line global-require
-    prom = require('http-metrics-middleware').promClient;  // eslint-disable-line global-require
+    prom = require('http-metrics-middleware').promClient; // eslint-disable-line global-require
   });
 
   afterEach(() => {
@@ -124,7 +124,7 @@ describe('LoadBalancer', () => {
 
 
   describe('Weighted Load', () => {
-    beforeEach(() => {       // Set max number of session per node
+    beforeEach(() => { // Set max number of session per node
       process.env.SESSIONS_PER_ENGINE_THRESHOLD = 130;
       Config.init();
     });
@@ -159,8 +159,8 @@ describe('LoadBalancer', () => {
       const actualRatio = counters['172.19.0.5'] / counters['172.19.0.4'];
       // Calculate the expected ratio. The 99 and 120 magic numbers below
       // reflect the qix_active_sessions values in the test data
-      const expectedRatio =
-        (Config.sessionsPerEngineThreshold - 99) / (Config.sessionsPerEngineThreshold - 120);
+      const expectedRatio = (Config.sessionsPerEngineThreshold - 99)
+      / (Config.sessionsPerEngineThreshold - 120);
       expect(actualRatio).to.be.within(expectedRatio * 0.8, expectedRatio * 1.2);
     });
   });

@@ -3,11 +3,11 @@ const Router = require('koa-router');
 const swagger = require('swagger2');
 const swagger2koa = require('swagger2-koa');
 const path = require('path');
+const MetricsMiddleware = require('http-metrics-middleware');
+const c2k = require('koa-connect');
 const Config = require('./Config');
 const qixSessionService = require('./QixSessionService');
 const logger = require('./Logger').get();
-const MetricsMiddleware = require('http-metrics-middleware');
-const c2k = require('koa-connect');
 
 const prom = MetricsMiddleware.promClient;
 

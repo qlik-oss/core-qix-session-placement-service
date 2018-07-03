@@ -1,5 +1,5 @@
-const Config = require('./Config');
 const prom = require('http-metrics-middleware').promClient;
+const Config = require('./Config');
 
 let roundRobinCounter = 0;
 
@@ -30,9 +30,9 @@ function compareResources(a, b) {
 // Returns true when NO kubernetes pod deletion timestamp is found
 function isNotTerminating(instance) {
   return !(
-    instance.kubernetes &&
-    instance.kubernetes.metadata &&
-    !!instance.kubernetes.metadata.deletionTimestamp
+    instance.kubernetes
+    && instance.kubernetes.metadata
+    && !!instance.kubernetes.metadata.deletionTimestamp
   );
 }
 
@@ -41,8 +41,8 @@ class LoadBalancer {
     // Only load balance on healthy engines
     const healthyEngines = engines.filter(instance => instance.engine.status === 'OK').filter(isNotTerminating);
     // Remove engines with too many active sessions if a threshold was defined
-    const filteredEngines = healthyEngines.length > 0 && Config.sessionsPerEngineThreshold ?
-      this.checkMaxSessions(healthyEngines) : healthyEngines;
+    const filteredEngines = healthyEngines.length > 0 && Config.sessionsPerEngineThreshold
+      ? this.checkMaxSessions(healthyEngines) : healthyEngines;
 
     switch (Config.sessionStrategy) {
       case 'weighted':
@@ -71,7 +71,7 @@ class LoadBalancer {
   static leastLoad(engines) {
     if (engines.length === 0) {
       return undefined;
-    } else if (engines.length === 1) {
+    } if (engines.length === 1) {
       return engines[0];
     }
     const sortedEngines = engines.sort(compareResources);

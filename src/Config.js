@@ -14,12 +14,12 @@ class Config {
     logger.info(`QIX Session Service is running with session strategy ${Config.sessionStrategy}`);
 
     this.port = parseInt(process.env.PORT, 10);
-    if (!this.port || isNaN(this.port)) {
+    if (!this.port || Number.isNaN(this.port)) {
       this.port = 9455;
     }
 
     Config.sessionsPerEngineThreshold = parseInt(process.env.SESSIONS_PER_ENGINE_THRESHOLD, 10);
-    if (Config.sessionsPerEngineThreshold && !isNaN(Config.sessionsPerEngineThreshold)) {
+    if (Config.sessionsPerEngineThreshold && !Number.isNaN(Config.sessionsPerEngineThreshold)) {
       logger.info(`Session service has been configured to not place new sessions on an engine exceeding ${Config.sessionsPerEngineThreshold} active sessions`);
     } else if (Config.sessionStrategy === 'weighted') {
       throw new Error('SESSIONS_PER_ENGINE_THRESHOLD needs to be set when using the "weighted" session strategy.');

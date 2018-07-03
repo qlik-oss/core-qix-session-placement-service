@@ -1,8 +1,8 @@
+const createError = require('http-errors');
 const engineDiscoveryClient = require('./EngineDiscoveryClient');
 const engineSessionPrepper = require('./DocPrepper');
 const engineLoadBalancer = require('./LoadBalancer');
 const logger = require('./Logger').get();
-const createError = require('http-errors');
 
 class QixSessionService {
   /**
@@ -27,10 +27,10 @@ class QixSessionService {
       throw createError(503, 'No suitable Qlik Associative Engine available');
     }
 
-    const port = instance.engine.port;
+    const { port } = instance.engine;
     // since qliktive is only using one network
     // we know that we can take the ip of the first network.
-    const ip = instance.engine.networks[0].ip;
+    const { ip } = instance.engine.networks[0];
 
     logger.debug(`Opening session against engine at ${ip}:${port}`);
 
