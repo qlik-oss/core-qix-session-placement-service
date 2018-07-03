@@ -1,5 +1,11 @@
 const winston = require('winston');
 
+const specLogger = winston.format(info => ({
+  logseverity: info.level.toUpperCase(),
+  timestamp: new Date(Date.now()).toISOString(),
+  message: info.message,
+}));
+
 /**
  * Class providing a shared logger instance to be used in all files.
  */
@@ -10,16 +16,11 @@ class Logger {
    */
   static get() {
     if (!Logger.logger) {
-      Logger.logger = new (winston.Logger)({
+      Logger.logger = winston.createLogger({
         transports: [
-          new (winston.transports.Console)({
+          new winston.transports.Console({
             level: process.env.LOG_LEVEL || 'info',
-            humanReadableUnhandledException: true,
-            formatter: options => JSON.stringify({
-              logseverity: options.level.toUpperCase(),
-              message: options.message,
-              timestamp: new Date(Date.now()).toISOString(),
-            }),
+            format: winston.format.combine(specLogger(), winston.format.json()),
           }),
         ],
       });
