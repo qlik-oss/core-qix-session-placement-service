@@ -81,6 +81,11 @@ app
   .use(router.routes())
   .use(router.allowedMethods());
 
+// Initialize metrics for active and remaining sessions
+setTimeout(() => {
+  qixSessionService.init();
+}, 10000);
+
 server = app.listen(Config.port);
 
 logger.info(`Listening on port ${Config.port}`);
