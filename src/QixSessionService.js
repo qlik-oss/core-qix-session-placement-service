@@ -6,6 +6,18 @@ const logger = require('./Logger').get();
 
 class QixSessionService {
   /**
+   * Method for initializing metrics for active and remaining sessions
+   */
+  static async init() {
+    try {
+      const engines = await engineDiscoveryClient.listEngines();
+      engineLoadBalancer.checkMaxSessions(engines);
+    } catch (err) {
+      logger.error(`Engine Discovery client did not return any engine instances when initializing metrics ${err}`);
+    }
+  }
+
+  /**
    * Picks an engine
    * @param docId
    * @returns {Promise<TResult>}
