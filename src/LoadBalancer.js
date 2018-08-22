@@ -31,8 +31,9 @@ function compareResources(a, b) {
 function isNotTerminating(instance) {
   return !(
     instance.kubernetes
-    && instance.kubernetes.metadata
-    && !!instance.kubernetes.metadata.deletionTimestamp
+    && instance.kubernetes.pod
+    && instance.kubernetes.pod.metadata
+    && !!instance.kubernetes.pod.metadata.deletionTimestamp
   );
 }
 
