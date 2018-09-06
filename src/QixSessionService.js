@@ -19,6 +19,7 @@ class QixSessionService {
   }
 
   static async getVizceralMetrics() {
+    const time = new Date() / 1000;
     let engines;
     const metrics = {
       renderer: 'global',
@@ -43,7 +44,7 @@ class QixSessionService {
           name: engine.networks[0].ip,
           maxVolume: Config.sessionsPerEngineThreshold,
           class: 'normal',
-          updated: 1466838546805,
+          updated: time,
         };
 
         const sessionMetric = engine.metrics.filter(metric => metric.name === 'qix_active_sessions');
