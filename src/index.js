@@ -75,6 +75,10 @@ router.get(`/${metricsEndpoint}`, async (ctx) => {
   }
 });
 
+router.get('/vizceral', async (ctx) => {
+  ctx.body = await qixSessionService.getVizceralMetrics();
+});
+
 app
   .use(c2k(metrics.initRoutes()))
   .use(swagger2koa.ui(document, '/openapi'))

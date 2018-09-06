@@ -3,6 +3,7 @@ const engineDiscoveryClient = require('./EngineDiscoveryClient');
 const engineSessionPrepper = require('./DocPrepper');
 const engineLoadBalancer = require('./LoadBalancer');
 const logger = require('./Logger').get();
+const Config = require('./Config');
 
 class QixSessionService {
   /**
@@ -14,6 +15,60 @@ class QixSessionService {
       engineLoadBalancer.checkMaxSessions(engines);
     } catch (err) {
       logger.error(`Engine Discovery client did not return any engine instances when initializing metrics ${err}`);
+    }
+  }
+
+  static async getVizceralMetrics() {
+    let engines;
+    const metrics = {
+      renderer: 'global',
+      name: 'edge',
+      nodes: [
+        {
+          renderer: 'region',
+          name: 'GATEWAY',
+          class: 'normal',
+        },
+      ],
+      connections: [],
+    };
+
+    try {
+      engines = await engineDiscoveryClient.listEngines();
+
+      engines.forEach((instance) => {
+        const { engine } = instance;
+        const node = {
+          renderer: 'region',
+          name: engine.networks[0].ip,
+          maxVolume: Config.sessionsPerEngineThreshold,
+          class: 'normal',
+          updated: 1466838546805,
+        };
+
+        const sessionMetric = engine.metrics.filter(metric => metric.name === 'qix_active_sessions');
+
+        const activeSessions = sessionMetric[0].metric[0].gauge.value;
+
+        const connection = {
+          source: 'GATEWAY',
+          target: engine.networks[0].ip,
+          metrics: {
+            normal: activeSessions,
+          },
+          notices: [
+          ],
+          class: 'normal',
+        };
+
+        metrics.nodes.push(node);
+        metrics.connections.push(connection);
+      });
+
+      return metrics;
+    } catch (err) {
+      logger.error('Engine Discovery client did not return an engine instance when fetching vizcerals');
+      throw createError(503, 'No suitable QIX Engine available');
     }
   }
 
