@@ -20,7 +20,7 @@ class QixSessionService {
 
   static async getVizceralMetrics() {
     const time = new Date() / 1000;
-    let totalSessionCount;
+    let totalSessionCount = 0;
     let engines;
     const metrics = {
       renderer: 'global',
