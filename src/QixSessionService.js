@@ -5,8 +5,6 @@ const engineLoadBalancer = require('./LoadBalancer');
 const logger = require('./Logger').get();
 const Config = require('./Config');
 
-const engineList = {};
-
 class QixSessionService {
   /**
    * Method for initializing metrics for active and remaining sessions
