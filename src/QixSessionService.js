@@ -41,7 +41,7 @@ class QixSessionService {
         const { engine } = instance;
         const node = {
           renderer: 'region',
-          name: engine.networks[0].ip,
+          name: `QIX Engine - ${engine.networks[0].ip}`,
           maxVolume: Config.sessionsPerEngineThreshold,
           class: 'normal',
           updated: time,
