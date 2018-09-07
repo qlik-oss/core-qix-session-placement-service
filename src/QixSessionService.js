@@ -49,11 +49,21 @@ class QixSessionService {
 
         const activeSessions = sessionMetric[0].metric[0].gauge.value;
 
+        let level;
+
+        if (isTerminating) {
+          level = 'danger';
+        } else if (activeSessions >= Config.sessionsPerEngineThreshold) {
+          level = 'warning';
+        } else {
+          level = 'normal';
+        }
+
         const node = {
           renderer: 'region',
           name,
           maxVolume: Config.sessionsPerEngineThreshold * 1000,
-          class: isTerminating ? 'danger' : 'normal',
+          class: level,
           updated: time,
           metadata: {
             sessionCount: activeSessions,
