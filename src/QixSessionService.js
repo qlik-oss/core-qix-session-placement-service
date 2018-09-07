@@ -92,6 +92,7 @@ class QixSessionService {
         },
       );
 
+      logger.info(JSON.stringify(metrics));
       return metrics;
     } catch (err) {
       logger.error('Engine Discovery client did not return an engine instance when fetching vizcerals');
