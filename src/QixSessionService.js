@@ -38,12 +38,17 @@ class QixSessionService {
       engines = await engineDiscoveryClient.listEngines();
 
       engines.forEach((instance) => {
+        const isTerminating = instance.kubernetes
+          && instance.kubernetes.pod
+          && instance.kubernetes.pod.metadata
+          && !!instance.kubernetes.pod.metadata.deletionTimestamp;
         const { engine } = instance;
+        const name = isTerminating ? `TERMINATING QIX Engine - ${engine.networks[0].ip}` : `QIX Engine - ${engine.networks[0].ip}`;
         const node = {
           renderer: 'region',
-          name: `QIX Engine - ${engine.networks[0].ip}`,
+          name,
           maxVolume: Config.sessionsPerEngineThreshold,
-          class: 'normal',
+          class: isTerminating ? 'danger' : 'normal',
           updated: time,
         };
 
@@ -53,9 +58,9 @@ class QixSessionService {
 
         const connection = {
           source: 'GATEWAY',
-          target: engine.networks[0].ip,
+          target: name,
           metrics: {
-            normal: activeSessions,
+            normal: isTerminating ? 0 : activeSessions,
           },
           notices: [
           ],
