@@ -44,23 +44,27 @@ class QixSessionService {
           && !!instance.kubernetes.pod.metadata.deletionTimestamp;
         const { engine } = instance;
         const name = isTerminating ? `TERMINATING QIX Engine - ${engine.networks[0].ip}` : `QIX Engine - ${engine.networks[0].ip}`;
+
+        const sessionMetric = engine.metrics.filter(metric => metric.name === 'qix_active_sessions');
+
+        const activeSessions = sessionMetric[0].metric[0].gauge.value;
+
         const node = {
           renderer: 'region',
           name,
           maxVolume: Config.sessionsPerEngineThreshold * 1000,
           class: isTerminating ? 'danger' : 'normal',
           updated: time,
+          metadata: {
+            sessionCount: activeSessions,
+          },
         };
-
-        const sessionMetric = engine.metrics.filter(metric => metric.name === 'qix_active_sessions');
-
-        const activeSessions = sessionMetric[0].metric[0].gauge.value;
 
         const connection = {
           source: 'GATEWAY',
           target: name,
           metrics: {
-            normal: isTerminating ? 0 : (activeSessions * 1000),
+            normal: activeSessions * 1000,
           },
           notices: [
           ],
