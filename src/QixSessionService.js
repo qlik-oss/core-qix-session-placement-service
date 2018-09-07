@@ -86,7 +86,9 @@ class QixSessionService {
           renderer: 'region',
           name: 'GATEWAY',
           class: 'normal',
-          totalSessionCount,
+          metadata: {
+            totalSessionCount,
+          },
         },
       );
 
