@@ -5,6 +5,8 @@ const engineLoadBalancer = require('./LoadBalancer');
 const logger = require('./Logger').get();
 const Config = require('./Config');
 
+const engineList = {};
+
 class QixSessionService {
   /**
    * Method for initializing metrics for active and remaining sessions
@@ -20,17 +22,12 @@ class QixSessionService {
 
   static async getVizceralMetrics() {
     const time = new Date() / 1000;
+    let totalSessionCount;
     let engines;
     const metrics = {
       renderer: 'global',
       name: 'edge',
-      nodes: [
-        {
-          renderer: 'region',
-          name: 'GATEWAY',
-          class: 'normal',
-        },
-      ],
+      nodes: [],
       connections: [],
     };
 
@@ -43,11 +40,12 @@ class QixSessionService {
           && instance.kubernetes.pod.metadata
           && !!instance.kubernetes.pod.metadata.deletionTimestamp;
         const { engine } = instance;
-        const name = isTerminating ? `TERMINATING QIX Engine - ${engine.networks[0].ip}` : `QIX Engine - ${engine.networks[0].ip}`;
+        const name = isTerminating ? 'TERMINATING' : `QIX-${engine.networks[0].ip}`;
 
         const sessionMetric = engine.metrics.filter(metric => metric.name === 'qix_active_sessions');
 
         const activeSessions = sessionMetric[0].metric[0].gauge.value;
+        totalSessionCount += activeSessions;
 
         let level;
 
@@ -84,6 +82,15 @@ class QixSessionService {
         metrics.nodes.push(node);
         metrics.connections.push(connection);
       });
+
+      metrics.nodes.push(
+        {
+          renderer: 'region',
+          name: 'GATEWAY',
+          class: 'normal',
+          totalSessionCount,
+        },
+      );
 
       return metrics;
     } catch (err) {
