@@ -47,7 +47,7 @@ class QixSessionService {
         const node = {
           renderer: 'region',
           name,
-          maxVolume: Config.sessionsPerEngineThreshold,
+          maxVolume: Config.sessionsPerEngineThreshold * 1000,
           class: isTerminating ? 'danger' : 'normal',
           updated: time,
         };
@@ -60,7 +60,7 @@ class QixSessionService {
           source: 'GATEWAY',
           target: name,
           metrics: {
-            normal: isTerminating ? 0 : activeSessions,
+            normal: isTerminating ? 0 : (activeSessions * 1000),
           },
           notices: [
           ],
