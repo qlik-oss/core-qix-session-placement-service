@@ -9,7 +9,7 @@ services:
       - SESSIONS_PER_ENGINE_THRESHOLD=100
 
   mira:
-    image: qlikcore/mira:0.4.0
+    image: qlikcore/mira:1.0.0
     ports:
       - "9100:9100"
     environment:
