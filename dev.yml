@@ -23,7 +23,8 @@ services:
       - "5858:5858"
 
   mira:
-    image: qlikcore/mira:1.0.0
+    image: qlikcore/mira:2.0.0
+    user: root
     ports:
       - "9100:9100"
     environment:
