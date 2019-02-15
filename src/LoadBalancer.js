@@ -128,14 +128,13 @@ class LoadBalancer {
       return true;
     });
 
-    const timestamp = Date.now();
     // Record total active sessions on all nodes
-    activeSessionsTotalGauge.set(totalSessions, timestamp);
+    activeSessionsTotalGauge.set(totalSessions);
 
     // Record number of remaining sessions before threshold is reached. Could be negative.
     if (Config.sessionsPerEngineThreshold) {
       const nbrTotalAllowedSessions = engines.length * Config.sessionsPerEngineThreshold;
-      remainingSessionsGauge.set(nbrTotalAllowedSessions - totalSessions, timestamp);
+      remainingSessionsGauge.set(nbrTotalAllowedSessions - totalSessions);
     }
 
     return filteredEngines;
