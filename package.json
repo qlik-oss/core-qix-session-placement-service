@@ -31,11 +31,11 @@
     "swagger2-koa": "1.0.3",
     "uuid": "3.3.2",
     "winston": "3.2.1",
-    "ws": "6.1.4"
+    "ws": "6.2.0"
   },
   "devDependencies": {
     "after-work.js": "4.3.2",
-    "eslint": "5.15.0",
+    "eslint": "5.15.1",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "2.16.0"
   },
