@@ -40,7 +40,7 @@ function isNotTerminating(instance) {
 class LoadBalancer {
   static giveMeAnEngine(engines) {
     // Only load balance on healthy engines
-    const healthyEngines = engines.filter(instance => instance.engine.status === 'OK').filter(isNotTerminating);
+    const healthyEngines = engines.filter((instance) => instance.engine.status === 'OK').filter(isNotTerminating);
     // Remove engines with too many active sessions if a threshold was defined
     const filteredEngines = healthyEngines.length > 0 && Config.sessionsPerEngineThreshold
       ? this.checkMaxSessions(healthyEngines) : healthyEngines;
@@ -88,7 +88,7 @@ class LoadBalancer {
       if (!instance.engine.metrics) {
         return 0;
       }
-      const sessionMetric = instance.engine.metrics.filter(metric => metric.name === 'qix_active_sessions');
+      const sessionMetric = instance.engine.metrics.filter((metric) => metric.name === 'qix_active_sessions');
       const nbrSessions = sessionMetric[0].metric[0].gauge.value;
       if (nbrSessions <= maxSessionsPerEngine) {
         return maxSessionsPerEngine - nbrSessions;
@@ -119,7 +119,7 @@ class LoadBalancer {
   static checkMaxSessions(engines) {
     let totalSessions = 0;
     const filteredEngines = engines.filter((element) => {
-      const sessionMetric = element.engine.metrics.filter(metric => metric.name === 'qix_active_sessions');
+      const sessionMetric = element.engine.metrics.filter((metric) => metric.name === 'qix_active_sessions');
       const nbrSessions = sessionMetric[0].metric[0].gauge.value;
       totalSessions += nbrSessions;
       if (nbrSessions >= Config.sessionsPerEngineThreshold) {

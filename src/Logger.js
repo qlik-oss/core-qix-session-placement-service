@@ -1,6 +1,6 @@
 const winston = require('winston');
 
-const specLogger = winston.format(info => ({
+const specLogger = winston.format((info) => ({
   logseverity: info.level.toUpperCase(),
   timestamp: new Date(Date.now()).toISOString(),
   message: info.message,
