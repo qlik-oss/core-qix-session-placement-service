@@ -37,7 +37,7 @@ The REST API is specified in the [api-doc.yml](./doc/api-doc.yml) OpenAPI docume
 
 Creates a session app in an available QIX Engine and returns the session info.
 
-### /session/:docId
+### /session/doc/:docId
 
 Opens a session towards a specific document and returns the session info. Assumes that the document is already available to any QIX Engine in the orchestration.
 
