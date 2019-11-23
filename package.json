@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/qlik-oss/core-qix-session-placement-service#readme",
   "dependencies": {
-    "enigma.js": "2.6.0",
+    "enigma.js": "2.6.1",
     "http-errors": "1.7.3",
     "http-metrics-middleware": "1.1.6",
     "koa": "2.11.0",
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "after-work.js": "4.3.2",
-    "eslint": "6.6.0",
+    "eslint": "6.7.0",
     "eslint-config-airbnb-base": "14.0.0",
     "eslint-plugin-import": "2.18.2"
   },
