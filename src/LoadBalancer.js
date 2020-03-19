@@ -89,7 +89,7 @@ class LoadBalancer {
         return 0;
       }
       const sessionMetric = instance.engine.metrics.filter((metric) => metric.name === 'qix_active_sessions');
-      const nbrSessions = sessionMetric[0].metric[0].gauge.value;
+      const nbrSessions = parseInt(sessionMetric[0].metrics[0].value, 10);
       if (nbrSessions <= maxSessionsPerEngine) {
         return maxSessionsPerEngine - nbrSessions;
       }
@@ -120,7 +120,7 @@ class LoadBalancer {
     let totalSessions = 0;
     const filteredEngines = engines.filter((element) => {
       const sessionMetric = element.engine.metrics.filter((metric) => metric.name === 'qix_active_sessions');
-      const nbrSessions = sessionMetric[0].metric[0].gauge.value;
+      const nbrSessions = parseInt(sessionMetric[0].metrics[0].value, 10);
       totalSessions += nbrSessions;
       if (nbrSessions >= Config.sessionsPerEngineThreshold) {
         return false;
