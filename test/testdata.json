@@ -1217,7 +1217,7 @@
                     "name": "qix_active_sessions",
                     "help": "Current number of active session.",
                     "type": "GAUGE",
-                    "metric": [
+                    "metrics": [
                         {
                             "value": "120.00000"
                         }
