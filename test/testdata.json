@@ -132,11 +132,9 @@
                     "name": "qix_active_sessions",
                     "help": "Current number of active session.",
                     "type": "GAUGE",
-                    "metric": [
+                    "metrics": [
                         {
-                            "gauge": {
-                                "value": 99
-                            }
+                            "value": "99.00000"
                         }
                     ]
                 },
@@ -1219,11 +1217,9 @@
                     "name": "qix_active_sessions",
                     "help": "Current number of active session.",
                     "type": "GAUGE",
-                    "metric": [
+                    "metrics": [
                         {
-                            "gauge": {
-                                "value": 120
-                            }
+                            "value": "120.00000"
                         }
                     ]
                 },

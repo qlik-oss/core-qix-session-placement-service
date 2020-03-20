@@ -9,7 +9,7 @@ services:
       - SESSIONS_PER_ENGINE_THRESHOLD=100
 
   mira:
-    image: qlikcore/mira:2.0.0
+    image: qlikcore/mira:3.0.0
     user: root
     ports:
       - "9100:9100"
@@ -19,7 +19,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   engine1:
-    image: qlikcore/engine:12.556.0
+    image: qlikcore/engine:12.612.0
     command: -S AcceptEULA=${ACCEPT_EULA}
     ports:
       - "9276:9076"
@@ -27,7 +27,7 @@ services:
       qix-engine: ""
 
   engine2:
-    image: qlikcore/engine:12.556.0
+    image: qlikcore/engine:12.612.0
     command: -S AcceptEULA=${ACCEPT_EULA}
     ports:
       - "9176:9076"
