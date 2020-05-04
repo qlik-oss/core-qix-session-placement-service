@@ -1,6 +1,6 @@
 const WebSocket = require('ws');
 const enigma = require('enigma.js');
-const uuid = require('uuid/v4');
+const { v4: uuid } = require('uuid');
 const createError = require('http-errors');
 const logger = require('./Logger').get();
 
