@@ -31,7 +31,7 @@
     "swagger2-koa": "2.0.0",
     "uuid": "8.0.0",
     "winston": "3.2.1",
-    "ws": "7.2.5"
+    "ws": "7.3.0"
   },
   "devDependencies": {
     "after-work.js": "4.3.2",
