@@ -24,7 +24,7 @@
     "enigma.js": "2.7.1",
     "http-errors": "1.7.3",
     "http-metrics-middleware": "2.0.0",
-    "koa": "2.11.0",
+    "koa": "2.12.0",
     "koa-connect": "2.0.1",
     "koa-router": "8.0.8",
     "swagger2": "2.0.0",
