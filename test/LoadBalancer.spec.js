@@ -122,7 +122,6 @@ describe('LoadBalancer', () => {
     });
   });
 
-
   describe('Weighted Load', () => {
     beforeEach(() => { // Set max number of session per node
       process.env.SESSIONS_PER_ENGINE_THRESHOLD = 130;

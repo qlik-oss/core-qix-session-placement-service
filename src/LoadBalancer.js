@@ -26,7 +26,6 @@ function compareResources(a, b) {
   return 1;
 }
 
-
 // Returns true when NO kubernetes pod deletion timestamp is found
 function isNotTerminating(instance) {
   return !(
