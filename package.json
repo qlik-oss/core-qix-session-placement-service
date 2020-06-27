@@ -25,12 +25,12 @@
     "http-errors": "1.7.3",
     "http-metrics-middleware": "2.0.0",
     "koa": "2.13.0",
-    "koa-connect": "2.0.1",
+    "koa-connect": "2.1.0",
     "koa-router": "9.0.1",
     "swagger2": "2.0.0",
     "swagger2-koa": "2.0.0",
-    "uuid": "8.1.0",
-    "winston": "3.3.2",
+    "uuid": "8.2.0",
+    "winston": "3.3.3",
     "ws": "7.3.0"
   },
   "devDependencies": {
