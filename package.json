@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/qlik-oss/core-qix-session-placement-service#readme",
   "dependencies": {
-    "enigma.js": "2.7.1",
+    "enigma.js": "2.7.2",
     "http-errors": "1.8.0",
     "http-metrics-middleware": "2.1.0",
     "koa": "2.13.0",
