@@ -29,7 +29,7 @@
     "koa-router": "9.4.0",
     "swagger2": "2.0.0",
     "swagger2-koa": "2.0.0",
-    "uuid": "8.3.0",
+    "uuid": "8.3.1",
     "winston": "3.3.3",
     "ws": "7.3.1"
   },
