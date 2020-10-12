@@ -1,5 +1,7 @@
 # core-qix-session-placement-service
 
+*As of 1 July 2020, Qlik Core is no longer available to new customers. No further maintenance will be done in this repository.* 
+
 **NOTE: This repository contains an example service for the [Qlik Core Assisted Prescription](https://github.com/qlik-oss/core-assisted-prescription) use case.**
 
 ## Status
